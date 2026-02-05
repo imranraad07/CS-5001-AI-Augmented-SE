@@ -1,16 +1,3 @@
-#!/usr/bin/env python3
-"""
-Refactor MBPP task implementations using Ollama + LangChain.
-
-Reads:
-  dataset/input/tasks/task_*.py
-  prompts/user_prompt.md
-
-Writes:
-  dataset/outputs/tasks/task_*.py
-  dataset/outputs/explanations/task_*_model_output.md
-"""
-
 from __future__ import annotations
 
 import os
@@ -103,7 +90,8 @@ def refactor_task(
     explanation_md = (
         f"# Model output for task_{task_id}\n\n"
         f"## Model\n- {DEFAULT_MODEL}\n\n"
-        f"## Output\n\n{output}\n"
+        f"## Original Code:\n\n{impl_code}\n"
+        f"## Refactored Code:\n\n{output}\n"
     )
 
     write(
