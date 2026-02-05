@@ -50,7 +50,7 @@ def is_tree_balanced(root):
 - Removed redundant `is True` checks in boolean expressions
 - Maintained the same logic and behavior as the original implementation
 - Kept the same function signatures and return types
-- Ensured the code passes all existing tests
-- Improved readability by consistent spacing and indentation
-- Simplified the return statement in `is_tree_balanced` for better clarity
-- Preserved the original functionality while making the code more maintainable
+- Ensured all test cases continue to pass
+- Simplified the return statement in `is_tree_balanced` for better readability
+- Preserved the recursive structure of the height calculation
+- Maintained the same base cases for both functions

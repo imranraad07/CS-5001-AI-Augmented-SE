@@ -44,11 +44,11 @@ def amicable_numbers_sum(limit):
     return sum(amicables)
 ```
 
-- Extracted the divisor sum calculation into a separate function `sum_proper_divisors` for reusability and clarity
-- Replaced list comprehensions with generator expressions for better memory efficiency
-- Used `set.update()` with a set literal for cleaner addition of multiple elements
-- Improved variable naming consistency (e.g., `sum_fact` to `sum_proper_divisors`)
-- Maintained all original error handling and logic flow
-- Preserved the exact same behavior as validated by the tests
-- Reduced code duplication by encapsulating the divisor sum logic
-- Improved readability through better function organization and structure
+- Extracted the divisor sum calculation into a separate function `sum_proper_divisors` for better readability and reusability
+- Replaced list comprehensions with generator expressions in the divisor sum calculation for better memory efficiency
+- Used `set.update()` with a set literal for adding multiple elements to the set
+- Maintained the same input validation and error messages
+- Preserved the exact logic for identifying amicable numbers
+- Kept the same return value structure (sum of amicable numbers or error messages)
+- Improved code organization by separating concerns (divisor calculation vs. amicable number detection)
+- Maintained all original functionality as validated by the tests

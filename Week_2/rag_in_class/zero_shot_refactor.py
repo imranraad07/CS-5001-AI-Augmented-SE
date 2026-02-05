@@ -126,8 +126,9 @@ def main() -> None:
     output_tasks.mkdir(parents=True, exist_ok=True)
     output_explanations.mkdir(parents=True, exist_ok=True)
     (output_tasks / "__init__.py").touch(exist_ok=True)
-
+    print(DEFAULT_MODEL)
     llm = ChatOllama(model=DEFAULT_MODEL, temperature=DEFAULT_TEMPERATURE)
+
 
     paths = Paths(
         input_tasks=input_tasks,
@@ -146,4 +147,3 @@ if __name__ == "__main__":
     except Exception as exc:
         print(f"Error: {exc}", file=sys.stderr)
         sys.exit(1)
-

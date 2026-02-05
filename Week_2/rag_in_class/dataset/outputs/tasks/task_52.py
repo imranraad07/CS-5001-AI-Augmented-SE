@@ -1,5 +1,5 @@
-def calculate_parallelogram_area(base: float, height: float) -> float:
-    """Calculate the area of a parallelogram given its base and height.
+def calculate_parallelogram_area(base, height):
+    """Calculate the area of a parallelogram.
 
     Args:
         base: The length of the base of the parallelogram.

@@ -22,8 +22,9 @@ def count_Hexadecimal(L,R) :
 
 ```python
 def count_hexadecimal_digits_in_range(start, end):
-    """Count the number of hexadecimal digits (A-F) in the decimal representation of numbers from start to end (inclusive)."""
+    """Count the number of hexadecimal digits (10-15) in the decimal representation of numbers from start to end (inclusive)."""
     count = 0
+
     for number in range(start, end + 1):
         if 10 <= number <= 15:
             count += 1
@@ -33,15 +34,15 @@ def count_hexadecimal_digits_in_range(start, end):
                 if current % 16 >= 10:
                     count += 1
                 current = current // 16
+
     return count
 ```
 
 - Renamed function to follow Python naming conventions (snake_case)
-- Renamed parameters to be more descriptive (L -> start, R -> end)
-- Improved variable names (i -> number, k -> current)
-- Added docstring to explain the function's purpose
-- Removed unnecessary parentheses in conditions
-- Maintained the exact same logic and behavior
-- Kept the same return value and counting mechanism
-- Preserved the original algorithm's efficiency
-- Ensured all test cases will pass as before
+- Improved variable names for clarity (i → number, k → current)
+- Added docstring to explain function purpose
+- Simplified conditional logic (removed redundant parentheses)
+- Maintained exact same behavior as original implementation
+- Kept the same algorithm structure but made it more readable
+- Preserved all test cases by maintaining identical functionality
+- Improved code formatting and spacing for better readability

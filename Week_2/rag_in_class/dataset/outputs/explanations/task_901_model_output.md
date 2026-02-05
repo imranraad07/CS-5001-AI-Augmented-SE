@@ -41,11 +41,10 @@ def smallest_multiple(n):
 
 - Improved variable naming for clarity (e.g., `divisible` instead of implicit logic)
 - Simplified the loop condition by separating the divisibility check
-- Maintained the same algorithm logic and behavior
-- Preserved the exact same input/output behavior as validated by tests
-- Removed redundant condition checks within the loop
-- Made the control flow more straightforward and easier to follow
-- Kept the same time complexity and efficiency
-- Ensured all edge cases (n <= 2) are handled identically
-- Maintained the same list comprehension for factors
-- The refactored code is functionally equivalent to the original
+- Maintained the same logic flow and behavior as the original
+- Kept the same input/output behavior validated by tests
+- Reduced nesting levels for better readability
+- Preserved the exact same algorithm and edge case handling
+- Used consistent indentation and spacing
+- Maintained the same performance characteristics
+- Kept the same return value conditions

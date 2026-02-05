@@ -2,7 +2,7 @@ def decimal_to_binary(n):
     """Convert a decimal number to its binary representation as an integer.
 
     Args:
-        n: A non-negative integer to convert.
+        n: A non-negative integer to convert to binary.
 
     Returns:
         The binary representation of n as an integer (e.g., 5 becomes 101).
@@ -13,7 +13,7 @@ def decimal_to_binary(n):
     while n != 0:
         remainder = n % 2
         binary_number += remainder * (10 ** position)
-        n //= 2
+        n = n // 2
         position += 1
 
     return binary_number

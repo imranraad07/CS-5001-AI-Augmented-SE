@@ -1,4 +1,4 @@
-.FF.FF.....FF..F..FFFF.F.F...F.FF..FF...                                 [100%]
+.FF.FF.....FF.....FFFF.F.F...F.FF..FF...                                 [100%]
 =================================== FAILURES ===================================
 ______________________________ test_mbpp_asserts _______________________________
 
@@ -48,14 +48,6 @@ _________________________________ test_task_33 _________________________________
 E       NameError: name 'decimal_To_Binary' is not defined
 
 tests/test_task_33.py:4: NameError
-________________________________ test_task_392 _________________________________
-
-    def test_task_392():
->       assert get_max_sum(60) == 106
-E       assert 60 == 106
-E        +  where 60 = get_max_sum(60)
-
-tests/test_task_392.py:4: AssertionError
 ________________________________ test_task_426 _________________________________
 
     def test_task_426():
@@ -145,6 +137,12 @@ E       assert 60 == 400
 E        +  where 60 = parallelogram_perimeter(10, 20)
 
 tests/test_task_882.py:4: AssertionError
+=============================== warnings summary ===============================
+tests/test_task_124.py::test_mbpp_asserts
+  /home/j/Documents/classes/cs-5001-slop/CS-5001-AI-Augmented-SE/Week_2/rag_in_class/dataset/outputs/tasks/task_124.py:13: DeprecationWarning: complex() argument 'imag' must be a real number, not complex
+    complex_number = complex(a, b)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 =========================== short test summary info ============================
 FAILED tests/test_task_101.py::test_mbpp_asserts - assert 5 == 3
 FAILED tests/test_task_107.py::test_task_107 - NameError: name 'count_Hexadec...
@@ -152,7 +150,6 @@ FAILED tests/test_task_124.py::test_mbpp_asserts - assert 3.141592653589793 =...
 FAILED tests/test_task_144.py::test_task_144 - NameError: name 'sum_Pairs' is...
 FAILED tests/test_task_315.py::test_mbpp_asserts - NameError: name 'find_Max_...
 FAILED tests/test_task_33.py::test_task_33 - NameError: name 'decimal_To_Bina...
-FAILED tests/test_task_392.py::test_task_392 - assert 60 == 106
 FAILED tests/test_task_426.py::test_task_426 - NameError: name 'filter_oddnum...
 FAILED tests/test_task_431.py::test_mbpp_asserts - assert False == None
 FAILED tests/test_task_453.py::test_mbpp_asserts - NameError: name 'sumofFact...

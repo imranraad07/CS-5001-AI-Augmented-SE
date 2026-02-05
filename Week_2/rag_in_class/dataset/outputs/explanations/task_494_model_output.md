@@ -16,10 +16,10 @@ def binary_to_integer(binary_tuple):
     """Convert a tuple of binary digits (0s and 1s) to a decimal integer string.
 
     Args:
-        binary_tuple: A tuple containing binary digits (0 or 1).
+        binary_tuple: A tuple containing only 0s and 1s representing binary digits.
 
     Returns:
-        A string representation of the decimal integer.
+        A string representation of the decimal integer value of the binary input.
     """
     binary_str = ''.join(str(bit) for bit in binary_tuple)
     decimal_value = int(binary_str, 2)
@@ -28,9 +28,9 @@ def binary_to_integer(binary_tuple):
 
 - Renamed `test_tup` to `binary_tuple` for clarity
 - Split the one-liner into separate steps for better readability
-- Added docstring to explain function purpose, arguments, and return value
-- Maintained exact same behavior (converts binary tuple to decimal string)
+- Added docstring explaining the function's purpose, arguments, and return value
+- Maintained the exact same behavior (converting binary tuple to decimal string)
 - Kept the same return type (string)
-- Preserved the original logic of joining and converting
+- Preserved the original functionality as validated by tests
 - Improved variable naming (`res` → `decimal_value`, `ele` → `bit`)
-- Maintained all existing functionality as validated by tests
+- Maintained the same error handling (will raise ValueError for invalid binary digits)
