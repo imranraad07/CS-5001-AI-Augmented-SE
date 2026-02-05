@@ -76,7 +76,7 @@ def main() -> None:
 
     docs = load_docs(paths)
     if not docs:
-        raise SystemExit("No documents found to index. Check dataset/outputs/tasks and dataset/outputs/error_logs.")
+        raise SystemExit("No documents found to index. Check dataset/outputs/tasks and dataset/outputs/explanations.")
 
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=1200,
