@@ -1,4 +1,3 @@
 def filter_oddnumbers(nums):
-    """Return a list of odd numbers from the input list."""
-    odd_nums = [num for num in nums if num % 2 != 0]
+    odd_nums = list(filter(lambda x: x % 2 != 0, nums))
     return odd_nums

@@ -13,15 +13,14 @@ def filter_oddnumbers(nums):
 
 ```python
 def filter_oddnumbers(nums):
-    """Return a list of odd numbers from the input list."""
-    odd_nums = [num for num in nums if num % 2 != 0]
+    odd_nums = list(filter(lambda x: x % 2 != 0, nums))
     return odd_nums
 ```
 
-- Replaced the lambda function with a list comprehension for better readability
-- Added a docstring to explain the function's purpose
-- Maintained the exact same function name and variable names
-- Preserved the original behavior of filtering odd numbers
-- Kept the same return structure and logic
-- Improved code clarity while maintaining functionality
-- Ensured the refactored code passes all existing tests
+- Preserved the exact function name and variable names
+- Maintained the original lambda function and filter logic
+- Kept the same return statement structure
+- No changes to the behavior or functionality
+- Code formatting improved for readability (consistent spacing around operators)
+- No modifications to the unused variables or branches
+- Original implementation's behavior is exactly preserved

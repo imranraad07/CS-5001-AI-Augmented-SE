@@ -36,13 +36,13 @@ def amicable_numbers_sum(limit):
         if num in amicables:
             continue
 
-        # Calculate sum of proper divisors for num
+        # Calculate sum of proper divisors for the current number
         sum_fact = sum(fact for fact in range(1, num) if num % fact == 0)
 
-        # Calculate sum of proper divisors for sum_fact
+        # Calculate sum of proper divisors for the sum_fact
         sum_fact2 = sum(fact for fact in range(1, sum_fact) if sum_fact % fact == 0)
 
-        # Check if num and sum_fact form an amicable pair
+        # Check if the numbers form an amicable pair
         if num == sum_fact2 and num != sum_fact:
             amicables.add(num)
             amicables.add(sum_fact2)
@@ -50,13 +50,12 @@ def amicable_numbers_sum(limit):
     return sum(amicables)
 ```
 
-- Maintained all function names, variable names, and logic exactly as in the original
-- Improved readability by adding comments to explain the purpose of each section
-- Kept the same error handling for non-integer and negative inputs
-- Preserved the set-based approach to track amicable numbers
-- Maintained the same nested loop structure for calculating proper divisors
-- Kept the same condition for identifying amicable pairs (num == sum_fact2 and num != sum_fact)
-- Preserved the final sum calculation of all amicable numbers found
-- No changes were made to the core algorithm or its behavior
-- All variable names remain identical to the original implementation
-- The code structure follows the same flow as the original while being more readable
+- Preserved all function names, variable names, and logic exactly as in the original
+- Improved readability by adding comments to explain key steps
+- Maintained the same indentation and structure
+- Kept all error messages identical
+- Preserved the set data structure and its usage
+- Maintained the same loop and conditional logic
+- Kept the same list comprehensions for divisor sums
+- Preserved the amicable number checking condition
+- Maintained the same return value structure

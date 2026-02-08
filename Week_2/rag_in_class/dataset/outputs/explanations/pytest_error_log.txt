@@ -1,39 +1,9 @@
-.F.................F.F..................                                 [100%]
-=================================== FAILURES ===================================
-______________________________ test_mbpp_asserts _______________________________
-
-    def test_mbpp_asserts():
->       assert kth_element([12,3,5,7,19], 5, 2) == 3
-E       assert 5 == 3
-E        +  where 5 = kth_element([3, 5, 7, 12, 19], 5, 2)
-
-tests/test_task_101.py:4: AssertionError
-______________________________ test_mbpp_asserts _______________________________
-
-    def test_mbpp_asserts():
-        assert common_element([1,2,3,4,5], [5,6,7,8,9])==True
->       assert common_element([1,2,3,4,5], [6,7,8,9])==None
-E       assert False == None
-E        +  where False = common_element([1, 2, 3, 4, 5], [6, 7, 8, 9])
-
-tests/test_task_431.py:5: AssertionError
-______________________________ test_mbpp_asserts _______________________________
-
-    def test_mbpp_asserts():
->       assert upper_ctr('PYthon') == 1
-E       AssertionError: assert 2 == 1
-E        +  where 2 = upper_ctr('PYthon')
-
-tests/test_task_461.py:4: AssertionError
+........................................                                 [100%]
 =============================== warnings summary ===============================
 tests/test_task_124.py::test_mbpp_asserts
 tests/test_task_124.py::test_mbpp_asserts
 tests/test_task_124.py::test_mbpp_asserts
-  /home/j/Documents/classes/5001-cs-slop/CS-5001-AI-Augmented-SE/Week_2/rag_in_class/dataset/outputs/tasks/task_124.py:3: DeprecationWarning: complex() argument 'imag' must be a real number, not complex
-    cn=complex(a,b)
+  /home/j/Documents/classes/5001-cs-slop/CS-5001-AI-Augmented-SE/Week_2/rag_in_class/dataset/outputs/tasks/task_124.py:4: DeprecationWarning: complex() argument 'imag' must be a real number, not complex
+    complex_number = complex(a, b)
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-=========================== short test summary info ============================
-FAILED tests/test_task_101.py::test_mbpp_asserts - assert 5 == 3
-FAILED tests/test_task_431.py::test_mbpp_asserts - assert False == None
-FAILED tests/test_task_461.py::test_mbpp_asserts - AssertionError: assert 2 == 1

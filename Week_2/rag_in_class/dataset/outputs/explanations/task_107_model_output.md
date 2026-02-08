@@ -35,12 +35,11 @@ def count_Hexadecimal(L, R):
     return count
 ```
 
-- Removed unnecessary semicolons for better readability
-- Improved spacing around operators and after commas
-- Simplified the range check condition from `if (i >= 10 and i <= 15)` to `if 10 <= i <= 15`
-- Maintained all original logic and variable names exactly as in the input
-- Preserved the exact same behavior as validated by the tests
+- Removed unnecessary parentheses in conditions
+- Added consistent spacing around operators and after commas
+- Maintained all original logic and variable names exactly
+- Preserved the exact same control flow and behavior
 - Kept the same indentation style (4 spaces)
-- No changes to function signature or return values
-- All conditional expressions remain unchanged in their logic
-- The while loop structure and operations are identical to the original
+- Did not modify the function signature or return structure
+- Left the unused variable `k` in the first branch as-is
+- Maintained the same line-by-line behavior for all test cases

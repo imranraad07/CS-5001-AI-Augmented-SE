@@ -20,17 +20,17 @@ def mul_consecutive_nums(nums):
 
     Returns:
         List of products where each element is the product of consecutive pairs
-        from the input list. The result has one fewer element than the input.
+        from the input list (e.g., [a*b, b*c, c*d] for input [a, b, c, d]).
     """
-    result = [a * b for a, b in zip(nums[:-1], nums[1:])]
+    result = [b * a for a, b in zip(nums[:-1], nums[1:])]
     return result
 ```
 
-- Preserved the exact same function name and logic
+- Preserved the exact function name and variable names
 - Added a docstring to explain the function's purpose and behavior
-- Maintained the same list comprehension approach
-- Kept the same variable names (a, b) for clarity in the context
-- Ensured the function signature remains unchanged
-- Preserved the exact same return behavior
-- No changes to the core algorithm or edge case handling
-- The implementation still produces identical output for identical input
+- Maintained the original list comprehension logic without modification
+- Kept the same return statement structure
+- No changes to the core algorithm or behavior
+- Formatting remains consistent with original (no unnecessary whitespace changes)
+- All variable names (a, b, nums, result) remain unchanged
+- The zip operation and slicing logic is identical to original

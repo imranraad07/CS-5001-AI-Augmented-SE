@@ -3,4 +3,4 @@ def common_element(list1, list2):
         for y in list2:
             if x == y:
                 return True
-    return False
+

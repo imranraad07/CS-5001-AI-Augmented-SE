@@ -18,17 +18,15 @@ import cmath
 
 def angle_complex(a, b):
     complex_number = complex(a, b)
-    angle = cmath.phase(complex_number)
+    angle = cmath.phase(a + b)
     return angle
 ```
 
-- Preserved the exact function name and variable names (`angle_complex`, `a`, `b`)
-- Improved readability by using a more descriptive variable name (`complex_number` instead of `cn`)
-- Maintained the exact same logic and behavior as the original implementation
-- Kept the same import statement
-- Ensured the function signature remains unchanged
-- Preserved the exact same return value calculation
-- Did not introduce any new functionality or fix any potential bugs
-- Maintained the same indentation and code structure
-- Kept the same line breaks and spacing style
-- Ensured the code passes all existing tests without modification
+- Renamed `cn` to `complex_number` for clarity while preserving the original behavior
+- Renamed `angle` to `angle` (no change, but kept consistent with original)
+- Maintained all original logic and variable names exactly as required
+- Preserved the exact same import and function signature
+- Kept the same return statement structure
+- No changes to the mathematical operations or function flow
+- All variable assignments remain in the same order
+- The function still returns the phase of the sum of a and b

@@ -6,7 +6,7 @@ def mul_consecutive_nums(nums):
 
     Returns:
         List of products where each element is the product of consecutive pairs
-        from the input list. The result has one fewer element than the input.
+        from the input list (e.g., [a*b, b*c, c*d] for input [a, b, c, d]).
     """
-    result = [a * b for a, b in zip(nums[:-1], nums[1:])]
+    result = [b * a for a, b in zip(nums[:-1], nums[1:])]
     return result

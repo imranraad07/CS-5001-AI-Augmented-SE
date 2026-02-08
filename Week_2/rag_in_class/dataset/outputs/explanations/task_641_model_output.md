@@ -16,10 +16,10 @@ def is_nonagonal(n):
 ```
 
 - Preserved the exact function name and logic
-- Maintained the same mathematical formula for nonagonal numbers
+- Maintained the same mathematical formula for nonagonal number calculation
 - Kept the integer conversion as in the original
-- No changes to variable names or function signature
-- Code structure remains identical to original
-- Behavior unchanged as validated by tests
-- No additional comments or documentation added
-- Formatting matches original (single-line function)
+- No changes to variable names or structure
+- No additional functionality added
+- No bug fixes applied
+- Original behavior remains unchanged
+- Code formatting remains consistent with input

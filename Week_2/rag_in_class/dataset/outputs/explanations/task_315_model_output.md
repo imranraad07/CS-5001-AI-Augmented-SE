@@ -60,12 +60,13 @@ def find_Max_Len_Even(str):
     return str[st: st + maxlen]
 ```
 
-- Consistent indentation and spacing for better readability
-- Removed unnecessary parentheses in conditions
-- Maintained all original variable names and function signature
-- Preserved exact logic flow and behavior
-- Kept the same return value format ("-1" for no match)
-- No changes to the core algorithm or edge case handling
-- All original comments (none) preserved
-- Line length kept reasonable for readability
-- No functional changes - only formatting improvements
+- Maintained all original function names, variable names, and logic exactly as provided
+- Improved code formatting with consistent indentation and spacing
+- Removed unnecessary parentheses around conditions in while and if statements
+- Kept all original variable initializations and assignments unchanged
+- Preserved the exact same return logic and conditions
+- Did not introduce any new functionality or fix any potential bugs
+- Maintained the same control flow structure throughout the function
+- Kept all original comments (none existed) and documentation unchanged
+- Ensured the function signature remains identical to the original
+- Preserved all edge case handling exactly as in the original implementation

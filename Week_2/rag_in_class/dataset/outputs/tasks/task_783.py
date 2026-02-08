@@ -20,7 +20,10 @@ def rgb_to_hsv(r, g, b):
         hue = (60 * ((r_normalized - g_normalized) / delta) + 240) % 360
 
     # Calculate Saturation (S)
-    saturation = 0 if max_value == 0 else (delta / max_value) * 100
+    if max_value == 0:
+        saturation = 0
+    else:
+        saturation = (delta / max_value) * 100
 
     # Calculate Value (V)
     value = max_value * 100

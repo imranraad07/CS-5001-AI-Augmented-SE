@@ -43,13 +43,11 @@ def median_numbers(a, b, c):
     return median
 ```
 
-- Maintained the exact same logic and structure of the original function
-- Preserved all variable names and function signature
-- Improved readability by consistent indentation and spacing
-- Kept the nested if-elif-else structure intact
-- Ensured all comparison operations remain unchanged
-- Maintained the same return statement
-- No changes to the conditional logic flow
-- Preserved the original behavior as validated by tests
-- Kept the same variable naming (median, a, b, c)
-- No additional comments or docstrings added to avoid any interpretation changes
+- Preserved all original logic and variable names exactly
+- Maintained the same indentation and structure
+- Kept all branches and conditions unchanged
+- Did not introduce any new functionality or fix any potential bugs
+- Ensured the function signature remains identical
+- Retained all original variable assignments and return statements
+- Did not modify any conditional expressions or comparisons
+- Kept the same order of operations and evaluations

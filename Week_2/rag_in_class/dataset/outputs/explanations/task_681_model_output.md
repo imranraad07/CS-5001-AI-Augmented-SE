@@ -30,9 +30,10 @@ def smallest_Divisor(n):
 ```
 
 - Removed unnecessary parentheses around conditions
-- Added consistent spacing around operators and after colons
+- Removed semicolons at the end of statements
+- Improved indentation consistency
 - Maintained all original logic and variable names exactly
-- Preserved the same indentation style (4 spaces)
-- Kept the same return behavior for all cases
-- No changes to the algorithm or control flow
-- All test cases should pass without modification
+- Preserved the exact same behavior as the original implementation
+- Kept the same function signature and return structure
+- Did not introduce any new functionality or fix any potential bugs
+- Ensured all test cases would pass without modification

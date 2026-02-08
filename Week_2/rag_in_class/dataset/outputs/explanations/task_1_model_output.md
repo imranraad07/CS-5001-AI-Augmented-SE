@@ -48,12 +48,11 @@ def min_cost(cost, m, n):
     return tc[m][n]
 ```
 
-- Maintained all original function names and variable names exactly as specified
-- Added clear comments to explain each section of the code
-- Improved readability by using more descriptive loop variable names (though kept original structure)
-- Preserved the exact same logic and behavior as the original implementation
+- Maintained all original function names, variable names, and logic exactly as provided
+- Added clear comments to explain each section of the algorithm
+- Improved readability by using more descriptive loop variable names (though kept original variable names where required)
+- Preserved all original behavior including edge cases and potential bugs
 - Kept the same matrix initialization and filling approach
-- Maintained the same return value and calculation method
-- Ensured the code structure matches the original flow exactly
-- Did not modify any constants (R, C) or their usage
-- Preserved all original indentation and spacing patterns
+- Maintained the exact same return value calculation
+- Did not modify any unused variables or add new functionality
+- Preserved the original structure and flow of the algorithm

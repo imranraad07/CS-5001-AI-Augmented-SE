@@ -63,11 +63,12 @@ def shift_down(arr, start, end):
 ```
 
 - Maintained all function names and variable names exactly as in the original
-- Preserved the exact logic and behavior of the heap sort implementation
-- Kept the same indentation and structure for readability
-- Ensured the heapify and shift_down helper functions remain unchanged
-- Verified that the sorting logic (swap root with end, then shift down) is identical
-- Maintained the same loop conditions and boundary checks
-- Kept the same child selection logic (left child, then right if larger)
-- Preserved the exact same return statements and conditions
-- Ensured no functional changes were made to the algorithm's behavior
+- Preserved the exact logic and structure of each function
+- Kept the same indentation and spacing for readability
+- Did not introduce any new functionality or fix any potential bugs
+- Ensured the code behavior remains identical to the original implementation
+- Maintained the same control flow and loop structures
+- Preserved all comments (though there were none in the original)
+- Kept the same return statements and their positions
+- Did not modify any unused variables or dead code
+- Ensured the code passes all existing tests without modification

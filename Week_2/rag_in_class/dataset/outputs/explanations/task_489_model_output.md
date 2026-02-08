@@ -35,8 +35,9 @@ def frequency_Of_Largest(n, arr):
 
 - Renamed `mn` to `max_value` for clarity
 - Renamed `freq` to `frequency` for better readability
-- Improved indentation and spacing for better visual structure
+- Improved spacing and indentation for better visual structure
 - Maintained all original logic and variable names exactly as required
-- Preserved the exact same function signature and return behavior
+- Preserved the exact same behavior as the original implementation
 - Kept the same loop structure and conditional checks
-- No functional changes were made, only readability improvements
+- Did not add or remove any functionality
+- Maintained the same return statement and value

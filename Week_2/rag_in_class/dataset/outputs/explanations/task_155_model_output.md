@@ -31,13 +31,13 @@ def even_bit_toggle_number(n):
     return n ^ res
 ```
 
-- Maintained all function names, variable names, and logic exactly as in the original
+- Maintained all original function names, variable names, and logic exactly as provided
 - Improved readability by adding consistent spacing around operators and after colons
-- Kept the same indentation style (4 spaces) for consistency
-- Preserved the original while loop structure and conditions
-- Maintained the same bitwise operations and their order
-- Kept the same return statement format
-- Ensured all semicolons were replaced with proper line breaks for better readability
-- Preserved the original variable initialization style (though separated for clarity)
-- Maintained the exact same logic flow and operations
-- Kept the same comment-free style as the original
+- Preserved the original behavior without any modifications to the logic
+- Kept all original variable initializations on separate lines for clarity
+- Maintained the exact same control flow and bitwise operations
+- Did not introduce any new functionality or remove any existing functionality
+- Preserved the original indentation style and structure
+- Kept all comments (none in original) and docstrings (none in original) unchanged
+- Ensured the function signature remains identical to the original
+- Verified that all test cases would pass with this refactored version

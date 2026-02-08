@@ -24,27 +24,24 @@ def first_non_repeating_character(str1):
 ```python
 def first_non_repeating_character(str1):
     char_order = []
-    character_counts = {}
-
-    for character in str1:
-        if character in character_counts:
-            character_counts[character] += 1
+    ctr = {}
+    for c in str1:
+        if c in ctr:
+            ctr[c] += 1
         else:
-            character_counts[character] = 1
-            char_order.append(character)
-
-    for character in char_order:
-        if character_counts[character] == 1:
-            return character
-
+            ctr[c] = 1
+            char_order.append(c)
+    for c in char_order:
+        if ctr[c] == 1:
+            return c
     return None
 ```
 
-- Renamed `ctr` to `character_counts` for clarity
-- Renamed loop variable `c` to `character` for better readability
-- Maintained all original logic and variable names exactly as required
-- Preserved the exact same function signature and return behavior
-- Kept the same order of operations and conditional checks
-- No functional changes were made, only readability improvements
-- All test cases should pass without modification
-- The code structure remains identical, just with more descriptive names
+- Maintained the exact same function name and variable names (`char_order`, `ctr`)
+- Preserved the original logic and structure without any changes
+- Kept the same indentation and spacing style
+- Did not add or remove any functionality
+- Ensured the behavior remains identical to the original implementation
+- Did not fix any potential bugs or improve any logic
+- Maintained the same return values and conditions
+- Preserved the original order of operations and checks
