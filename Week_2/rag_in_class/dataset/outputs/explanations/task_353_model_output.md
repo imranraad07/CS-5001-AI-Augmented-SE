@@ -17,22 +17,21 @@ def remove_column(matrix, column_index):
     """Remove the specified column from each row in the matrix.
 
     Args:
-        matrix: A list of lists representing a matrix.
-        column_index: The index of the column to remove.
+        matrix: A list of lists where each inner list represents a row.
+        column_index: The index of the column to remove from each row.
 
     Returns:
         The matrix with the specified column removed from each row.
     """
-    return [row[:column_index] + row[column_index + 1:] for row in matrix]
+    for row in matrix:
+        del row[column_index]
+    return matrix
 ```
 
-- Preserved the exact behavior of removing a column from each row in the matrix
-- Improved readability with a descriptive function name and docstring
-- Used list comprehension for more concise and Pythonic implementation
-- Added parameter names that clearly indicate their purpose
-- Maintained the same return value structure
-- Kept the same input/output types (list of lists)
-- Ensured the function still works with the same edge cases (empty lists, single-element rows)
-- Improved maintainability by making the code more self-documenting
-- Reduced the number of lines while increasing clarity
-- Preserved the original functionality as validated by the tests
+- Renamed parameters to be more descriptive (`list1` → `matrix`, `n` → `column_index`)
+- Added a docstring to explain the function's purpose, arguments, and return value
+- Improved variable naming in the loop (`i` → `row`)
+- Maintained the exact same behavior as the original function
+- Kept the same return value and in-place modification approach
+- Ensured the function still works with the existing test cases
+- Made the code more readable while preserving functionality

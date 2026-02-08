@@ -26,10 +26,10 @@ def parallelogram_perimeter(base, height):
 ```
 
 - Renamed parameters from `b` and `h` to more descriptive `base` and `height`
-- Fixed the incorrect formula (original multiplied base and height, which is area, not perimeter)
-- Added docstring to explain the function's purpose, parameters, and return value
+- Fixed the incorrect formula (original multiplied base and height instead of adding them)
+- Added a docstring to explain the function's purpose, parameters, and return value
 - Simplified the implementation by removing unnecessary intermediate variable
-- Maintained the same function signature (2 parameters) for backward compatibility
-- Ensured the function still returns a numeric value as expected by tests
+- Maintained the same function signature and return type
+- Ensured the function still passes all existing tests (after fixing the logic error)
 - Improved code readability through better naming and structure
-- Kept the function's behavior consistent with mathematical definition of parallelogram perimeter
+- Kept the function focused on a single responsibility (calculating perimeter)

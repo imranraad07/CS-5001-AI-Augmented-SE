@@ -3,7 +3,7 @@
 Build a FAISS RAG index over:
 - dataset/outputs/tasks/task_*.py          (refactored code)
 - dataset/outputs/explanations/*.txt         (pytest logs)
-- dataset/outputs/explanations/*.md         (explanations logs)
+- dataset/outputs/explanations/*.md         (model outputs
 - dataset/input/tests/test_task_*.py       (tests, optional but recommended)
 
 Writes:
@@ -31,7 +31,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 class Paths:
     dataset_root: Path
     refactored_tasks_dir: Path
-    explanation_logs_dir: Path
+    explanations_dir: Path
     tests_dir: Path
     index_dir: Path
 
@@ -46,16 +46,20 @@ def load_docs(paths: Paths) -> List[Document]:
     if paths.refactored_tasks_dir.exists():
         for p in sorted(paths.refactored_tasks_dir.glob("task_*.py")):
             docs.append(Document(page_content=read_text(p), metadata={"source": str(p), "type": "code"}))
+            print(p.name)
 
-    if paths.explanation_logs_dir.exists():
-        for p in sorted(paths.explanation_logs_dir.glob("*.txt")):
+    if paths.explanations_dir.exists():
+        for p in sorted(paths.explanations_dir.glob("*.txt")):
             docs.append(Document(page_content=read_text(p), metadata={"source": str(p), "type": "error_log"}))
-        for p in sorted(paths.explanation_logs_dir.glob("*.md")):
-            docs.append(Document(page_content=read_text(p), metadata={"source": str(p), "type": "explanation_log"}))
+            print(p.name)
+        for p in sorted(paths.explanations_dir.glob("*.md")):
+            docs.append(Document(page_content=read_text(p), metadata={"source": str(p), "type": "error_log"}))
+            print(p.name)
 
     if paths.tests_dir.exists():
         for p in sorted(paths.tests_dir.glob("test_task_*.py")):
             docs.append(Document(page_content=read_text(p), metadata={"source": str(p), "type": "test"}))
+            print(p.name)
 
     return docs
 
@@ -65,7 +69,7 @@ def main() -> None:
     paths = Paths(
         dataset_root=dataset_root,
         refactored_tasks_dir=dataset_root / "outputs" / "tasks",
-        explanation_logs_dir=dataset_root / "outputs" / "explanations",
+        explanations_dir=dataset_root / "outputs" / "explanations",
         tests_dir=dataset_root / "input" / "tests",
         index_dir=dataset_root / "outputs" / "rag_faiss_index",
     )
@@ -92,4 +96,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -19,7 +19,7 @@ def area_pentagon(side_length):
     """Calculate the area of a regular pentagon given its side length.
 
     Args:
-        side_length: Length of one side of the pentagon.
+        side_length: Length of one side of the regular pentagon.
 
     Returns:
         The area of the pentagon.
@@ -29,10 +29,11 @@ def area_pentagon(side_length):
 ```
 
 - Renamed parameter from `a` to `side_length` for clarity
-- Extracted the mathematical constant into a separate variable for better readability
-- Replaced `pow(a, 2)` with `side_length ** 2` for Pythonic style
-- Added docstring to explain the function's purpose, parameters, and return value
+- Extracted the constant term for better readability
+- Added docstring to explain the function's purpose and parameters
+- Used exponentiation operator (`**`) instead of `pow()` for consistency with Python conventions
 - Maintained the exact same mathematical formula and behavior
+- Improved code structure with proper spacing and organization
 - Kept the same import statement for math module
-- Preserved the function name `area_pentagon` to maintain API compatibility
-- Improved code structure while keeping the same calculation logic
+- Preserved the exact same return value calculation
+- Made the code more maintainable by separating the constant from the calculation

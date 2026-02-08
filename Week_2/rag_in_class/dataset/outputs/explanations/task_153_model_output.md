@@ -21,7 +21,7 @@ def parabola_vertex(a, b, c):
         c: Constant term
 
     Returns:
-        tuple: (x, y) coordinates of the parabola's vertex
+        tuple: (x, y) coordinates of the vertex
     """
     x = -b / (2 * a)
     y = (4 * a * c - b ** 2) / (4 * a)
@@ -31,9 +31,8 @@ def parabola_vertex(a, b, c):
 - Simplified the calculation by breaking it into two clear steps (x and y coordinates)
 - Added docstring to explain the function's purpose, parameters, and return value
 - Used more descriptive variable names (x, y instead of vertex tuple)
-- Maintained the exact same mathematical calculations and return format
-- Improved readability by removing nested parentheses
+- Removed unnecessary parentheses in the return statement
+- Improved readability by separating the calculations
+- Maintained exact same mathematical operations and return format
 - Kept the same parameter order and function signature
-- Preserved all mathematical operations exactly as in the original
-- The function still returns a tuple of (x, y) coordinates
-- All test cases should pass without modification
+- Preserved all existing functionality as validated by tests
