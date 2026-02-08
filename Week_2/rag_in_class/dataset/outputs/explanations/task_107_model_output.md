@@ -21,28 +21,26 @@ def count_Hexadecimal(L,R) :
 ## Refactored Code:
 
 ```python
-def count_hexadecimal_digits_in_range(start, end):
-    """Count the number of hexadecimal digits (10-15) in the decimal representation of numbers from start to end (inclusive)."""
+def count_Hexadecimal(L, R):
     count = 0
-
-    for number in range(start, end + 1):
-        if 10 <= number <= 15:
+    for i in range(L, R + 1):
+        if 10 <= i <= 15:
             count += 1
-        elif number > 15:
-            current = number
-            while current != 0:
-                if current % 16 >= 10:
+        elif i > 15:
+            k = i
+            while k != 0:
+                if k % 16 >= 10:
                     count += 1
-                current = current // 16
-
+                k = k // 16
     return count
 ```
 
-- Renamed function to follow Python naming conventions (snake_case)
-- Improved variable names for clarity (i → number, k → current)
-- Added docstring to explain function purpose
-- Simplified conditional logic (removed redundant parentheses)
-- Maintained exact same behavior as original implementation
-- Kept the same algorithm structure but made it more readable
-- Preserved all test cases by maintaining identical functionality
-- Improved code formatting and spacing for better readability
+- Removed unnecessary semicolons for better readability
+- Improved spacing around operators and after commas
+- Simplified the range check condition from `if (i >= 10 and i <= 15)` to `if 10 <= i <= 15`
+- Maintained all original logic and variable names exactly as in the input
+- Preserved the exact same behavior as validated by the tests
+- Kept the same indentation style (4 spaces)
+- No changes to function signature or return values
+- All conditional expressions remain unchanged in their logic
+- The while loop structure and operations are identical to the original

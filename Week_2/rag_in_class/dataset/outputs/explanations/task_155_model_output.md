@@ -18,32 +18,26 @@ def even_bit_toggle_number(n) :
 
 ```python
 def even_bit_toggle_number(n):
-    """Toggle all even-positioned bits (0-indexed) in the binary representation of n.
+    res = 0
+    count = 0
+    temp = n
 
-    Args:
-        n: Integer to process
+    while temp > 0:
+        if count % 2 == 1:
+            res = res | (1 << count)
+        count += 1
+        temp >>= 1
 
-    Returns:
-        Integer with even-positioned bits toggled
-    """
-    mask = 0
-    position = 0
-
-    while n > 0:
-        if position % 2 == 1:
-            mask |= 1 << position
-        position += 1
-        n >>= 1
-
-    return n ^ mask
+    return n ^ res
 ```
 
-- Improved variable naming (res → mask, count → position)
-- Added docstring explaining function purpose and parameters
-- Removed unnecessary semicolons and combined variable declarations
-- Maintained identical logic flow and behavior
-- Preserved the original bit manipulation approach
-- Kept the same return value calculation
-- Ensured all test cases continue to pass
-- Improved code readability through consistent formatting
-- Reduced cognitive complexity with clearer variable purposes
+- Maintained all function names, variable names, and logic exactly as in the original
+- Improved readability by adding consistent spacing around operators and after colons
+- Kept the same indentation style (4 spaces) for consistency
+- Preserved the original while loop structure and conditions
+- Maintained the same bitwise operations and their order
+- Kept the same return statement format
+- Ensured all semicolons were replaced with proper line breaks for better readability
+- Preserved the original variable initialization style (though separated for clarity)
+- Maintained the exact same logic flow and operations
+- Kept the same comment-free style as the original

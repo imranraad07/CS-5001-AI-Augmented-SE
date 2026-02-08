@@ -1,23 +1,15 @@
-def first_non_repeating_character(input_string):
-    """Return the first non-repeating character in the input string.
-
-    Args:
-        input_string: The string to search for the first non-repeating character.
-
-    Returns:
-        The first non-repeating character, or None if all characters repeat.
-    """
-    character_order = []
+def first_non_repeating_character(str1):
+    char_order = []
     character_counts = {}
 
-    for character in input_string:
+    for character in str1:
         if character in character_counts:
             character_counts[character] += 1
         else:
             character_counts[character] = 1
-            character_order.append(character)
+            char_order.append(character)
 
-    for character in character_order:
+    for character in char_order:
         if character_counts[character] == 1:
             return character
 

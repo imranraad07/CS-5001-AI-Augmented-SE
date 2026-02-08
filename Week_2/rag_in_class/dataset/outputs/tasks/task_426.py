@@ -1,3 +1,4 @@
-def filter_odd_numbers(numbers):
+def filter_oddnumbers(nums):
     """Return a list of odd numbers from the input list."""
-    return [num for num in numbers if num % 2 != 0]
+    odd_nums = [num for num in nums if num % 2 != 0]
+    return odd_nums

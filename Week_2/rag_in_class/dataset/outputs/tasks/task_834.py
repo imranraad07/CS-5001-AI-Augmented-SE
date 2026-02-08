@@ -2,14 +2,17 @@ def generate_matrix(n):
     if n <= 0:
         return []
 
-    matrix = [[0] * n for _ in range(n)]
+    matrix = [[0 for _ in range(n)] for _ in range(n)]
     row_start = 0
     row_end = n - 1
     col_start = 0
     col_end = n - 1
     current = 1
 
-    while current <= n * n:
+    while True:
+        if current > n * n:
+            break
+
         # Fill top row from left to right
         for c in range(col_start, col_end + 1):
             matrix[row_start][c] = current

@@ -4,15 +4,21 @@ def amicable_numbers_sum(limit):
     if limit < 1:
         return "Input must be bigger than 0!"
 
-    def sum_proper_divisors(n):
-        return sum(fact for fact in range(1, n) if n % fact == 0)
-
     amicables = set()
+
     for num in range(2, limit + 1):
         if num in amicables:
             continue
-        sum_fact = sum_proper_divisors(num)
-        sum_fact2 = sum_proper_divisors(sum_fact)
+
+        # Calculate sum of proper divisors for num
+        sum_fact = sum(fact for fact in range(1, num) if num % fact == 0)
+
+        # Calculate sum of proper divisors for sum_fact
+        sum_fact2 = sum(fact for fact in range(1, sum_fact) if sum_fact % fact == 0)
+
+        # Check if num and sum_fact form an amicable pair
         if num == sum_fact2 and num != sum_fact:
-            amicables.update({num, sum_fact2})
+            amicables.add(num)
+            amicables.add(sum_fact2)
+
     return sum(amicables)

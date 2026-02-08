@@ -1,8 +1,4 @@
-def frequency_of_largest(n, arr):
-    """Return the frequency of the largest element in the array."""
-    if n == 0:
-        return 0
-
+def frequency_Of_Largest(n, arr):
     max_value = arr[0]
     frequency = 1
 

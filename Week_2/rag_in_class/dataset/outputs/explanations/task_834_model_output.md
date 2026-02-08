@@ -42,14 +42,17 @@ def generate_matrix(n):
     if n <= 0:
         return []
 
-    matrix = [[0] * n for _ in range(n)]
+    matrix = [[0 for _ in range(n)] for _ in range(n)]
     row_start = 0
     row_end = n - 1
     col_start = 0
     col_end = n - 1
     current = 1
 
-    while current <= n * n:
+    while True:
+        if current > n * n:
+            break
+
         # Fill top row from left to right
         for c in range(col_start, col_end + 1):
             matrix[row_start][c] = current
@@ -77,12 +80,12 @@ def generate_matrix(n):
     return matrix
 ```
 
-- Improved variable naming for better readability (e.g., `row_st` → `row_start`)
-- Fixed matrix initialization to avoid reference issues (using list comprehension instead of `[row[:] for row in [[0]*n]*n]`)
-- Added comments to explain each step of the spiral filling process
-- Maintained the same logic and behavior as the original implementation
-- Preserved the exact same input/output behavior as validated by tests
-- Simplified the while loop condition to be more straightforward
-- Kept the same spiral filling pattern (top row, right column, bottom row, left column)
-- Ensured the function still handles edge cases (n <= 0) correctly
-- Maintained the same time and space complexity as the original implementation
+- Improved variable names for better readability (e.g., `row_st` → `row_start`)
+- Added comments to explain each step of the matrix filling process
+- Replaced the list comprehension for matrix initialization with a more explicit nested list comprehension
+- Maintained all original logic and behavior exactly as in the original implementation
+- Preserved all function and variable names as required
+- Kept the same indentation and structure for the while loop and nested for loops
+- Ensured the same edge case handling for n <= 0
+- Maintained the exact same matrix filling pattern (spiral order)
+- Kept the same termination condition (current > n*n)

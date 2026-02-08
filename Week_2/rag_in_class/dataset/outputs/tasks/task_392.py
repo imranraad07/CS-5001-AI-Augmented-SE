@@ -1,12 +1,14 @@
 def get_max_sum(n):
-    if n < 0:
-        raise ValueError("n must be non-negative")
+    # Initialize the result list with base cases
+    res = [0, 1]
 
-    dp = [0] * (n + 1)
-    dp[0] = 0
-    dp[1] = 1
-
+    # Iterate from 2 to n (inclusive)
     for i in range(2, n + 1):
-        dp[i] = max(i, dp[i // 2] + dp[i // 3] + dp[i // 4] + dp[i // 5])
+        # Calculate the maximum sum for current index
+        current_max = max(
+            i,
+            res[i // 2] + res[i // 3] + res[i // 4] + res[i // 5]
+        )
+        res.append(current_max)
 
-    return dp[n]
+    return res[n]

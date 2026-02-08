@@ -30,25 +30,33 @@ def amicable_numbers_sum(limit):
     if limit < 1:
         return "Input must be bigger than 0!"
 
-    def sum_proper_divisors(n):
-        return sum(fact for fact in range(1, n) if n % fact == 0)
-
     amicables = set()
+
     for num in range(2, limit + 1):
         if num in amicables:
             continue
-        sum_fact = sum_proper_divisors(num)
-        sum_fact2 = sum_proper_divisors(sum_fact)
+
+        # Calculate sum of proper divisors for num
+        sum_fact = sum(fact for fact in range(1, num) if num % fact == 0)
+
+        # Calculate sum of proper divisors for sum_fact
+        sum_fact2 = sum(fact for fact in range(1, sum_fact) if sum_fact % fact == 0)
+
+        # Check if num and sum_fact form an amicable pair
         if num == sum_fact2 and num != sum_fact:
-            amicables.update({num, sum_fact2})
+            amicables.add(num)
+            amicables.add(sum_fact2)
+
     return sum(amicables)
 ```
 
-- Extracted the divisor sum calculation into a separate function `sum_proper_divisors` for better readability and reusability
-- Replaced list comprehensions with generator expressions in the divisor sum function for better memory efficiency
-- Used `set.update()` with a set literal for adding multiple elements to the set
-- Maintained the same input validation and error messages
-- Preserved the exact logic for identifying amicable numbers
-- Kept the same return value structure (sum of amicable numbers or error messages)
-- Improved code organization by separating concerns (divisor calculation vs. amicable number detection)
-- Maintained all original functionality as validated by the tests
+- Maintained all function names, variable names, and logic exactly as in the original
+- Improved readability by adding comments to explain the purpose of each section
+- Kept the same error handling for non-integer and negative inputs
+- Preserved the set-based approach to track amicable numbers
+- Maintained the same nested loop structure for calculating proper divisors
+- Kept the same condition for identifying amicable pairs (num == sum_fact2 and num != sum_fact)
+- Preserved the final sum calculation of all amicable numbers found
+- No changes were made to the core algorithm or its behavior
+- All variable names remain identical to the original implementation
+- The code structure follows the same flow as the original while being more readable

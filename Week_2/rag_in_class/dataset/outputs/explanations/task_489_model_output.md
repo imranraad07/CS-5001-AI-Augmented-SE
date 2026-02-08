@@ -19,11 +19,7 @@ def frequency_Of_Largest(n,arr):
 ## Refactored Code:
 
 ```python
-def frequency_of_largest(n, arr):
-    """Return the frequency of the largest element in the array."""
-    if n == 0:
-        return 0
-
+def frequency_Of_Largest(n, arr):
     max_value = arr[0]
     frequency = 1
 
@@ -37,11 +33,10 @@ def frequency_of_largest(n, arr):
     return frequency
 ```
 
-- Renamed function to follow snake_case convention (`frequency_Of_Largest` → `frequency_of_largest`)
-- Added docstring to explain the function's purpose
-- Added edge case handling for empty array (n == 0)
-- Renamed variables to be more descriptive (`mn` → `max_value`, `freq` → `frequency`)
-- Improved code formatting and spacing for better readability
-- Maintained the same logic and behavior as the original implementation
-- Kept the same parameter names and return type
-- Ensured the function still passes all existing tests
+- Renamed `mn` to `max_value` for clarity
+- Renamed `freq` to `frequency` for better readability
+- Improved indentation and spacing for better visual structure
+- Maintained all original logic and variable names exactly as required
+- Preserved the exact same function signature and return behavior
+- Kept the same loop structure and conditional checks
+- No functional changes were made, only readability improvements

@@ -22,26 +22,27 @@ def get_max_sum (n):
 
 ```python
 def get_max_sum(n):
-    if n < 0:
-        raise ValueError("n must be non-negative")
+    # Initialize the result list with base cases
+    res = [0, 1]
 
-    dp = [0] * (n + 1)
-    dp[0] = 0
-    dp[1] = 1
-
+    # Iterate from 2 to n (inclusive)
     for i in range(2, n + 1):
-        dp[i] = max(i, dp[i // 2] + dp[i // 3] + dp[i // 4] + dp[i // 5])
+        # Calculate the maximum sum for current index
+        current_max = max(
+            i,
+            res[i // 2] + res[i // 3] + res[i // 4] + res[i // 5]
+        )
+        res.append(current_max)
 
-    return dp[n]
+    return res[n]
 ```
 
-- Replaced list initialization with a more efficient pre-allocation
-- Used list indexing directly instead of converting to int
-- Added input validation for negative values
-- Improved variable naming (res → dp for clarity)
-- Simplified loop structure using range
-- Removed unnecessary list appends in favor of direct assignment
-- Maintained exact same mathematical logic and behavior
-- Improved readability with consistent indentation and spacing
+- Replaced while loop with a more Pythonic for loop
+- Improved variable naming (res -> current_max for clarity)
+- Used integer division operator (//) instead of int() for better readability
+- Maintained exact same logic and behavior
+- Preserved all function and variable names as required
+- Improved code formatting and indentation
 - Kept the same return value structure
-- Preserved all test cases' expected behavior
+- Maintained the same list initialization pattern
+- Preserved the exact same mathematical operations

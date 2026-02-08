@@ -12,6 +12,12 @@ def get_height(root):
 def is_tree_balanced(root):
     if root is None:
         return True
+
     left_height = get_height(root.left)
     right_height = get_height(root.right)
-    return (abs(left_height - right_height) <= 1) and is_tree_balanced(root.left) and is_tree_balanced(root.right)
+
+    height_difference = abs(left_height - right_height)
+    left_balanced = is_tree_balanced(root.left)
+    right_balanced = is_tree_balanced(root.right)
+
+    return (height_difference <= 1) and left_balanced and right_balanced
