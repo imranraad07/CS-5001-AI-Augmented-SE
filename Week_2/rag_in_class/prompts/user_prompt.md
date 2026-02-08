@@ -6,6 +6,7 @@ You are a software engineer refactoring Python code.
 
 ## Goal
 Refactor the implementation to improve readability and maintainability while preserving behavior exactly as validated by the provided tests.
+If you see any bugs in the existing implementation, do not fix them. This code's behavior should be unmodified.
 
 
 ## Output Format (strict)

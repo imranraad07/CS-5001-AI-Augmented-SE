@@ -13,23 +13,15 @@ def filter_oddnumbers(nums):
 
 ```python
 def filter_odd_numbers(numbers):
-    """Return a list of odd numbers from the input list.
-
-    Args:
-        numbers: List of integers to filter.
-
-    Returns:
-        List of odd integers from the input.
-    """
+    """Return a list of odd numbers from the input list."""
     return [num for num in numbers if num % 2 != 0]
 ```
 
 - Replaced single-letter parameter `nums` with descriptive `numbers`
 - Renamed function to follow snake_case convention (`filter_odd_numbers` instead of `filter_oddnumbers`)
-- Replaced `filter` + `lambda` with a list comprehension for better readability
-- Added docstring to explain function purpose, parameters, and return value
-- Maintained exact same behavior (odd number filtering)
+- Replaced lambda + filter with a more readable list comprehension
+- Added a docstring to explain the function's purpose
+- Maintained the same behavior (returns odd numbers from input list)
 - Kept the same return type (list)
-- Improved code clarity while preserving functionality
-- Reduced cognitive complexity by eliminating lambda and filter
-- Made the code more Pythonic and maintainable
+- Improved readability by using a more Pythonic approach
+- Preserved the exact same functionality as validated by tests

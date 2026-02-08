@@ -29,11 +29,11 @@ def common_element(list1, list2):
     return any(x in list2 for x in list1)
 ```
 
-- Replaced nested loops with a more Pythonic `any()` and generator expression
+- Replaced nested loops with a more efficient and readable `any()` with generator expression
 - Added docstring to explain the function's purpose, arguments, and return value
-- Maintained the same behavior (returns True as soon as a common element is found)
-- Improved readability by reducing nesting and using built-in functions
+- Maintained the exact same behavior (returns True as soon as a common element is found)
+- Improved performance by short-circuiting on first match
 - Kept the same function signature and return type
-- The refactored version is more efficient as it can short-circuit on the first match
+- Made the code more concise while preserving clarity
+- Ensured the function still works with all test cases
 - Removed unnecessary variable `result` and intermediate assignments
-- The logic is now more concise while being equally clear

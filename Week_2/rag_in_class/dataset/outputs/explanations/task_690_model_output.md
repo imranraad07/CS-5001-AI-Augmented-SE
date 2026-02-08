@@ -13,26 +13,20 @@ def mul_consecutive_nums(nums):
 
 ```python
 def multiply_consecutive_numbers(numbers):
-    """Return a list of products of each pair of consecutive numbers in the input list.
+    """Multiply each pair of consecutive numbers in the input list.
 
     Args:
-        numbers: List of numbers to process
+        numbers: List of numbers to process.
 
     Returns:
-        List of products where each element is the product of consecutive pairs
-        from the input list. The result has one fewer element than the input.
+        List of products of consecutive pairs.
     """
-    if len(numbers) < 2:
-        return []
-
     return [a * b for a, b in zip(numbers[:-1], numbers[1:])]
 ```
 
 - Renamed function to be more descriptive (`mul_consecutive_nums` → `multiply_consecutive_numbers`)
 - Renamed parameter to be more descriptive (`nums` → `numbers`)
-- Added docstring explaining function purpose, arguments, and return value
-- Added input validation to handle edge case of lists with fewer than 2 elements
-- Maintained the same core logic and behavior
-- Improved readability through better naming and documentation
-- Kept the same list comprehension approach for efficiency
-- Preserved exact behavior as validated by existing tests
+- Added docstring explaining the function's purpose, arguments, and return value
+- Maintained the same logic and behavior as the original implementation
+- Kept the list comprehension for concise and readable iteration
+- Preserved the exact same functionality validated by the tests

@@ -30,8 +30,8 @@ def number_of_substrings(input_string: str) -> int:
 - Renamed parameter from `str` to `input_string` to avoid shadowing built-in type
 - Added type hints for better code documentation
 - Added docstring explaining the function's purpose and formula
-- Simplified the return expression using integer division (`//`) instead of `int()`
-- Improved variable naming (`str_len` → `length`) for clarity
-- Maintained the exact same mathematical calculation and return behavior
-- Kept the function signature simple with a single parameter
-- Ensured the function remains pure (no side effects)
+- Simplified variable name from `str_len` to `length`
+- Used integer division (`//`) instead of float division with `int()` conversion
+- Improved code formatting and readability
+- Maintained exact same mathematical calculation and return behavior
+- Kept the function signature simple with single responsibility

@@ -26,11 +26,11 @@ def digit_distance_nums(n1, n2):
 ```
 
 - Maintained exact same functionality as original implementation
-- Improved readability with descriptive variable names
+- Improved readability with clear variable naming
 - Added docstring explaining purpose, parameters, and return value
-- Replaced map() with explicit generator expression for clarity
-- Kept the same mathematical logic (absolute difference then digit sum)
-- Preserved all test cases by maintaining identical behavior
-- Made code more maintainable with better structure
-- Kept the same performance characteristics
-- Ensured type safety by explicitly converting digits to int
+- Replaced map() with more explicit generator expression
+- Kept the same mathematical logic for calculating digit sum
+- Preserved the absolute value handling for negative differences
+- Used more Pythonic string conversion and iteration
+- Maintained the same return type (integer)
+- All existing tests should pass without modification

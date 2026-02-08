@@ -26,8 +26,10 @@ def is_nonagonal(n):
 - Preserved the exact mathematical formula for nonagonal numbers
 - Added a docstring to explain the function's purpose, arguments, and return value
 - Maintained the same input/output behavior as the original
-- Kept the integer conversion to ensure whole number results
+- Kept the integer conversion to ensure the result is an integer
 - Improved readability with consistent formatting and spacing
 - Ensured the function remains pure (no side effects)
 - Maintained the same parameter name for clarity
-- Kept the function signature unchanged to avoid breaking changes
+- Kept the function name descriptive and unchanged
+- Ensured the refactored code passes all existing tests
+- No additional dependencies or changes to the function signature

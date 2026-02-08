@@ -22,30 +22,37 @@ def first_non_repeating_character(str1):
 ## Refactored Code:
 
 ```python
-def first_non_repeating_character(s):
-    """Return the first non-repeating character in the string, or None if none exists."""
-    char_order = []
-    char_counts = {}
+def first_non_repeating_character(input_string):
+    """Return the first non-repeating character in the input string.
 
-    for char in s:
-        if char in char_counts:
-            char_counts[char] += 1
+    Args:
+        input_string: The string to search for the first non-repeating character.
+
+    Returns:
+        The first non-repeating character, or None if all characters repeat.
+    """
+    character_order = []
+    character_counts = {}
+
+    for character in input_string:
+        if character in character_counts:
+            character_counts[character] += 1
         else:
-            char_counts[char] = 1
-            char_order.append(char)
+            character_counts[character] = 1
+            character_order.append(character)
 
-    for char in char_order:
-        if char_counts[char] == 1:
-            return char
+    for character in character_order:
+        if character_counts[character] == 1:
+            return character
 
     return None
 ```
 
-- Renamed parameters and variables for clarity (e.g., `str1` to `s`, `ctr` to `char_counts`)
-- Added a docstring to explain the function's purpose
+- Renamed variables to be more descriptive (e.g., `str1` to `input_string`, `ctr` to `character_counts`, `char_order` to `character_order`)
+- Added a docstring to explain the function's purpose, arguments, and return value
 - Maintained the same logic and behavior as the original implementation
-- Kept the same return structure (returns the first non-repeating character or None)
-- Preserved the order of operations (counting first, then checking in order)
-- Used consistent naming conventions throughout
-- Improved readability by using more descriptive variable names
+- Kept the same return value (None) when no non-repeating character is found
+- Preserved the order of operations and the use of two data structures (list for order, dict for counts)
 - Ensured the function still passes all existing tests
+- Improved readability by using consistent and meaningful variable names
+- Maintained the same time complexity (O(n)) and space complexity (O(n))

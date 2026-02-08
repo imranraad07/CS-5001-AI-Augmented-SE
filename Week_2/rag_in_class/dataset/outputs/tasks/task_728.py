@@ -12,6 +12,6 @@ def sum_lists(list1, list2):
         ValueError: If lists are of different lengths
     """
     if len(list1) != len(list2):
-        raise ValueError("Input lists must be of equal length")
+        raise ValueError("Input lists must be of the same length")
 
     return [a + b for a, b in zip(list1, list2)]

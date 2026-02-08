@@ -58,9 +58,7 @@ def sum_of_odd_factors(n):
 - Renamed function to use snake_case for better readability
 - Added docstring to explain the function's purpose
 - Improved variable names (res → result, curr_sum → current_sum, etc.)
-- Simplified the loop to only check odd numbers (step=2)
-- Added comment to clarify the purpose of the initial while loop
-- Maintained the same logic and behavior as the original implementation
-- Preserved all mathematical operations and calculations
-- Kept the same return value structure
-- Ensured the code passes all existing tests
+- Added step of 2 in the range to only check odd numbers
+- Simplified the final condition to check if n > 2
+- Maintained the same algorithm and logic flow
+- Preserved all original functionality as validated by tests

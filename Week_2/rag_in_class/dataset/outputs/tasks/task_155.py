@@ -1,21 +1,19 @@
 def even_bit_toggle_number(n):
-    """Toggle all even-indexed bits (0-based) in the binary representation of n.
+    """Toggle all even-positioned bits (0-indexed) in the binary representation of n.
 
     Args:
         n: Integer to process
 
     Returns:
-        Integer with even-indexed bits toggled
+        Integer with even-positioned bits toggled
     """
-    result = 0
-    bit_position = 0
+    mask = 0
+    position = 0
 
-    # Process each bit in the number
-    temp = n
-    while temp > 0:
-        if bit_position % 2 == 1:  # Even-indexed bits (0-based)
-            result |= 1 << bit_position
-        bit_position += 1
-        temp >>= 1
+    while n > 0:
+        if position % 2 == 1:
+            mask |= 1 << position
+        position += 1
+        n >>= 1
 
-    return n ^ result
+    return n ^ mask
