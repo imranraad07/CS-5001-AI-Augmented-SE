@@ -41,3 +41,9 @@ Example 2:
 ```
 cca --repo output/demo_repo full --desc "Create Prime Number Checker in Python" --module src/prime_checker.py --tests tests/test_prime_checker.py --coverage "at least 80 percent"
 ```
+
+Example 3:
+
+```
+cca --repo output/demo_flask full --desc "Create a minimal project with FLASK" --module src/flask.py --tests tests/test_flask.py --coverage "at least 80 percent"
+```
