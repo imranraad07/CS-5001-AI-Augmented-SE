@@ -70,3 +70,25 @@ def scaffold_prompt(desc: str, out_dir: str, existing_tree: str) -> str:
         "EXISTING TREE (paths under output root, may be empty):\n"
         f"{existing_tree}\n"
     )
+
+
+def coverage_target_prompt(user_text: str) -> str:
+    """Build a prompt to parse a numeric coverage percentage from natural language."""
+
+    return (
+        "You are an expert at extracting structured data from natural language.\n"
+        "Parse a code coverage target from the user's text.\n\n"
+        "Output requirements:\n"
+        "- Return ONLY valid JSON\n"
+        "- Do NOT use Markdown\n"
+        "- Do NOT include explanations\n"
+        "- The JSON must match this schema exactly:\n"
+        "  {\"coverage_percent\": <number 0..100>}\n\n"
+        "Rules:\n"
+        "- Interpret the user's intent as a percentage target for total test coverage.\n"
+        "- Accept inputs like '95%', 'at least ninety five percent', '>= 90', 'coverage 87.5', '100 percent'.\n"
+        "- If the user specifies a number above 100, clamp to 100.\n"
+        "- If the user specifies a negative number, clamp to 0.\n"
+        "- If multiple numbers appear, pick the one most likely to be the coverage target.\n\n"
+        f"USER TEXT:\n{user_text}\n"
+    )

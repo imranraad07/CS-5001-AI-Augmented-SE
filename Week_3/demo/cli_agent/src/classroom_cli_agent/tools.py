@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import subprocess
 import json
+import subprocess
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
@@ -65,8 +65,15 @@ class Tools:
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
-    def run(self, cmd: str) -> Tuple[bool, str]:
-        proc = subprocess.run(cmd, cwd=self.repo_path, shell=True, capture_output=True, text=True)
+    def run(self, cmd: str, timeout_s: int = 600) -> Tuple[bool, str]:
+        proc = subprocess.run(
+            cmd,
+            cwd=self.repo_path,
+            shell=True,
+            capture_output=True,
+            text=True,
+            timeout=timeout_s,
+        )
         out = (proc.stdout or "") + ("\n" + proc.stderr if proc.stderr else "")
         return proc.returncode == 0, clamp(out.strip() if out.strip() else "[NO OUTPUT]", 20000)
 

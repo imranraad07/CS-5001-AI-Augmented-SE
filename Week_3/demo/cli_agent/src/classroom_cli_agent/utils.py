@@ -32,7 +32,21 @@ def ensure_model_available(model: str) -> None:
         out = subprocess.check_output(["ollama", "list"], text=True)
     except Exception:
         raise SystemExit("Unable to run `ollama list`. Ensure Ollama is installed and running.")
-    if model not in out:
+
+    # Typical output includes a header and rows like:
+    # NAME                ID              SIZE      MODIFIED
+    # llama3:latest       ...             ...
+    # We match the NAME column precisely to reduce false positives.
+    names: set[str] = set()
+    for line in (out or "").splitlines():
+        line = line.strip()
+        if not line or line.lower().startswith("name "):
+            continue
+        name = line.split()[0]
+        if name:
+            names.add(name)
+
+    if model not in names:
         raise SystemExit(f"Ollama model '{model}' not found locally. Run: ollama pull {model}")
 
 

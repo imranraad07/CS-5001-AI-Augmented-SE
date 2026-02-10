@@ -128,16 +128,18 @@ cca --repo <repo> commit \
 ### Calculator
 
 ```bash
-cca --repo output/demo_repo create \
+cca --repo output/demo_repo --verbose create \
   --desc "A calculator with add, subtract, multiply, divide functions" \
   --module src/calculator.py && \
-cca --repo output/demo_repo gen-tests \
+cca --repo output/demo_repo --verbose gen-tests \
   --desc "A calculator with add, subtract, multiply, divide functions" \
   --module src/calculator.py \
   --tests tests/test_calculator.py --overwrite && \
-cca --repo output/demo_repo report \
+cca --repo output/demo_repo --verbose report \
   --fail-on-tests \
-  --fail-on-coverage "95 percent" && \
+  --fail-on-coverage "95 percent" 
+  
+
 cca --repo output/demo_repo commit \
   --message "Agent: add calculator program and tests" \
   --push
@@ -148,16 +150,18 @@ cca --repo output/demo_repo commit \
 ### Prime Number Checker
 
 ```bash
-cca --repo output/demo_repo create \
+cca --repo output/demo_repo --verbose create \
   --desc "Create Prime Number Checker in Python" \
   --module src/prime_checker.py && \
-cca --repo output/demo_repo gen-tests \
+cca --repo output/demo_repo --verbose gen-tests \
   --desc "Create Prime Number Checker in Python" \
   --module src/prime_checker.py \
   --tests tests/test_prime_checker.py --overwrite && \
-cca --repo output/demo_repo report \
+cca --repo output/demo_repo --verbose report \
   --fail-on-tests \
-  --fail-on-coverage "90 percent" && \
+  --fail-on-coverage "90 percent" 
+  
+
 cca --repo output/demo_repo commit \
   --message "Agent: add prime checker and tests" \
   --push
@@ -168,16 +172,18 @@ cca --repo output/demo_repo commit \
 ### Flask Project
 
 ```bash
-cca --repo output/demo_flask create \
+cca --repo output/demo_flask --verbose create \
   --desc "Create a minimal project with FLASK" \
   --module src/flask.py && \
-cca --repo output/demo_flask gen-tests \
+cca --repo output/demo_flask --verbose gen-tests \
   --desc "Create a minimal project with FLASK" \
   --module src/flask.py \
   --tests tests/test_flask.py --overwrite && \
-cca --repo output/demo_flask report \
+cca --repo output/demo_flask --verbose report \
   --fail-on-tests \
-  --fail-on-coverage "80 percent"  && \
+  --fail-on-coverage "80 percent"
+
+
 cca --repo output/demo_flask commit \
   --message "Agent: add flask project and tests" \
   --push
@@ -188,16 +194,19 @@ cca --repo output/demo_flask commit \
 ### Streamlit Project
 
 ```bash
-cca --repo output/demo_streamlit create \
-  --desc "Create a project with Streamlit that shows a number is prime or not after taking an input" \
+cca --repo output/demo_streamlit --verbose create \
+  --desc "Create a project with Streamlit that takes basic info for credit card system" \
   --module src/app.py && \
-cca --repo output/demo_streamlit gen-tests \
-  --desc "Create a project with Streamlit that shows a number is prime or not after taking an input" \
+cca --repo output/demo_streamlit --verbose gen-tests \
+  --desc "Create a project with Streamlit that takes basic info for credit card system" \
   --module src/app.py \
   --tests tests/test_app.py --overwrite && \
-cca --repo output/demo_streamlit report \
+cca --repo output/demo_streamlit --verbose report \
   --fail-on-tests \
-  --fail-on-coverage "80 percent" && \
+  --fail-on-coverage "80 percent"
+  
+
+
 cca --repo output/demo_streamlit commit \
   --message "Agent: add streamlit app and tests" \
   --push
@@ -216,7 +225,9 @@ cca --repo output/demo_flask gen-tests \
   --tests tests/test_app.py && \
 cca --repo output/demo_flask report \
   --fail-on-tests \
-  --fail-on-coverage "60 percent" && \
+  --fail-on-coverage "60 percent"
+
+
 cca --repo output/demo_flask commit \
   --message "Agent: scaffold Flask project with tests" \
   --push

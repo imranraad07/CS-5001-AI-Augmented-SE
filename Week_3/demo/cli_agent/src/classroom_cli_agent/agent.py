@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 from .llm import OllamaLLM
-from .prompts import program_prompt, tests_prompt, scaffold_prompt
+from .prompts import program_prompt, tests_prompt, scaffold_prompt, coverage_target_prompt
 from .tools import Tools
 from .types import AgentConfig, RunResult
 from .utils import clamp, parse_coverage_total, strip_code_fences
@@ -36,6 +36,41 @@ class Agent:
             return RunResult(False, "Model returned empty module after sanitization.")
         self.tools.write(module_path, content + "\n")
         return RunResult(True, f"Wrote module: {module_path}")
+
+    def parse_coverage_target(self, user_text: str) -> float:
+        """Parse a natural-language coverage target into a numeric percentage.
+
+        This uses the configured LLM to interpret user intent, rather than relying on a
+        handwritten parser.
+        """
+
+        if not (user_text or "").strip():
+            raise ValueError("Coverage target is empty.")
+
+        prompt = coverage_target_prompt(user_text)
+        self._log(prompt)
+        raw = self.llm.generate(prompt)
+        self._log(raw)
+
+        try:
+            payload = json.loads(raw)
+        except Exception as e:
+            raise ValueError("Model did not return valid JSON for coverage target.") from e
+
+        if not isinstance(payload, dict) or "coverage_percent" not in payload:
+            raise ValueError("Model returned invalid coverage JSON schema.")
+
+        try:
+            val = float(payload["coverage_percent"])
+        except Exception as e:
+            raise ValueError("Model returned a non-numeric coverage_percent.") from e
+
+        # Defensive clamps in case the model drifts.
+        if val < 0:
+            val = 0.0
+        if val > 100:
+            val = 100.0
+        return val
 
     def scaffold_project(self, desc: str, out_dir: str = ".", overwrite: bool = False) -> RunResult:
         """Generate a multi-file project scaffold.

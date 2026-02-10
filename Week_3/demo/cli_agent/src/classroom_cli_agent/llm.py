@@ -20,7 +20,12 @@ class OllamaLLM:
             "stream": False,
             "options": {"temperature": float(self.temperature)},
         }
-        r = requests.post(url, json=payload, timeout=self.timeout_s)
-        r.raise_for_status()
+
+        try:
+            r = requests.post(url, json=payload, timeout=self.timeout_s)
+            r.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            raise RuntimeError(f"Failed to call Ollama at {url}: {e}") from e
+
         data = r.json()
         return (data.get("response") or "").strip()
