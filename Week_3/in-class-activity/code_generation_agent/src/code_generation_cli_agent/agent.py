@@ -15,7 +15,7 @@ class Agent:
         self.repo = Path(cfg.repo).resolve()
         self.tools = Tools(self.repo)
         self.prompt_manager = PromptManager()
-        
+
         # Default prompt variants
         self.planning_variant = 'default'
         self.code_gen_variant = 'default'
@@ -42,9 +42,9 @@ class Agent:
 
         return RunnableLambda(self._call_llm).invoke
 
-    def create_program(self, desc: str, module_path: str) -> RunResult:
+    def create_program(self, desc: str, modules_dir: str) -> RunResult:
         """Create a program module.
-        
+
         Steps:
         1) produce a plan
         2) draft code
@@ -57,7 +57,7 @@ class Agent:
             'planning',
             self.planning_variant,
             desc=desc,
-            module_path=module_path
+            modules_dir=modules_dir
         )
         self._log(p1)
         plan = run(p1).strip()
@@ -69,8 +69,8 @@ class Agent:
             'code_generation',
             self.code_gen_variant,
             desc=desc,
-            module_path=module_path,
-            plan=plan
+            plan=plan,
+            modules_dir=modules_dir
         )
         self._log(p2)
         draft_raw = run(p2)
@@ -80,8 +80,16 @@ class Agent:
             return RunResult(False, "Model returned empty module draft.")
 
         final_code = draft.rstrip() + "\n"
-        self.tools.write(module_path, final_code)
-        return RunResult(True, f"Wrote module: {module_path}")
+
+        modules = final_code.split(">>>")
+        for module in modules:
+            first_line_index = module.find("\n")
+            module_path = module[:first_line_index].strip()
+            module_code = module[first_line_index+1:].strip()
+            self._log(f"writing {module_code} to {module_path}")
+            self.tools.write(module_path, module_code)
+
+        return RunResult(True, f"Wrote module(s): {modules}")
 
     def commit_and_push(self, message: str, push: bool) -> RunResult:
         ok, out = self.tools.git_commit(message)
