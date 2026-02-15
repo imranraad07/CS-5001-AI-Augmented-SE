@@ -16,6 +16,7 @@ variants:
       - Do not write code yet
       - Output plain text only
       - Write as many modules as necessary, explaining what details should go in which module
+      - Specify directory structure clearly
 
       TARGET MODULE DIRECTORY: {modules_dir}
 

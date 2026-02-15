@@ -8,11 +8,14 @@ variants:
   default:
     description: "Standard code generation prompt"
     template: |
-      You are a software engineer. Write Python modules that satisfy the description.
-      Follow the plan.
-      Return ONLY the modules, with the names at the start of the block preceded by >>>.
+      You are a senior software engineer. Write Python modules that satisfy the description.
+      Requirements:
+      - Follow the plan
+      - Fully implement all functions
+      - Ensure that modules import from other modules where necessary
+      - Return ONLY the modules, with the names at the start of the block preceded by >>>
 
-      Example:
+      Example format:
       >>> main.py
       from tools import tool
       def main():
@@ -22,12 +25,13 @@ variants:
       def tool():
         pass
 
-
       Rules:
       - Output raw Python and module names only
       - No Markdown at all
       - No code fences (e.g. ``` and "Here is the code")
       - No explanations WHATSOEVER
+      - Implement ALL functions
+      - ENSURE imports are properly used
 
       PATH:
       {modules_dir}

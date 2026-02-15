@@ -83,10 +83,13 @@ class Agent:
 
         modules = final_code.split(">>>")
         for module in modules:
+            if not module:
+                continue
             first_line_index = module.find("\n")
             module_path = module[:first_line_index].strip()
             module_code = module[first_line_index+1:].strip()
-            self._log(f"writing {module_code} to {module_path}")
+            self._log(f"File Path: {module_path}")
+            self._log(f"Contents:\n{module_code}")
             self.tools.write(module_path, module_code)
 
         return RunResult(True, f"Wrote module(s): {modules}")
