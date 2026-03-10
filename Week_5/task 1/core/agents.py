@@ -249,3 +249,121 @@ class Gatekeeper:
             return f"FAIL - Draft mentions file(s) not found in diff: {', '.join(hallucinations)}"
 
         return "PASS"
+
+
+# ── Instruction-based draft flow (no diff required) ─────────────────────────
+
+class InstructionDrafter:
+    """
+    Given a plain-language instruction and a draft type (issue or pr),
+    produce a complete, structured GitHub draft — no git diff required.
+    Category and risk are inferred from keyword signals in the instruction.
+    """
+
+    _IMPL_HINTS = {
+        "rate limit":     ["Add middleware to count and throttle requests per IP/user.",
+                           "Use a token bucket or sliding window algorithm.",
+                           "Return HTTP 429 with `Retry-After` header on breach."],
+        "auth":           ["Ensure tokens are short-lived and rotated properly.",
+                           "Validate JWT signatures server-side.",
+                           "Add audit logging for auth events."],
+        "refactor":       ["Identify duplicated logic and extract to a shared utility.",
+                           "Ensure public API surface remains unchanged.",
+                           "Update all call sites and imports."],
+        "test":           ["Add unit tests for happy path and edge cases.",
+                           "Mock external dependencies.",
+                           "Aim for ≥80% branch coverage on changed files."],
+        "database":       ["Run migration in a transaction so it can be rolled back.",
+                           "Add indexes where query performance is affected.",
+                           "Back up data before destructive schema changes."],
+        "api":            ["Version the endpoint if the contract is changing.",
+                           "Document request/response schema in OpenAPI.",
+                           "Return meaningful error codes and messages."],
+        "performance":    ["Profile first — measure before optimizing.",
+                           "Add a benchmark test to track regressions.",
+                           "Consider caching hot paths."],
+    }
+
+    def _impl_notes(self, instruction: str) -> list:
+        notes = []
+        lower = instruction.lower()
+        for keyword, hints in self._IMPL_HINTS.items():
+            if keyword in lower:
+                notes.extend(hints)
+        return notes or ["Follow existing code conventions and patterns.",
+                         "Keep the change minimal and focused on the stated goal.",
+                         "Document any non-obvious decisions in inline comments."]
+
+    def draft(self, instruction: str, draft_type: str) -> dict:
+        print(f"[InstructionDrafter] Building {draft_type} draft from instruction...")
+
+        category  = _categorize(instruction)
+        risk      = _assess_risk(instruction, 0, 0)
+        self._last_risk = risk   # expose for caller
+        impl_notes = self._impl_notes(instruction)
+
+        category_badge = {"bugfix":"🐛","feature":"✨","refactor":"♻️",
+                          "test":"🧪","chore":"🔧"}.get(category, "📝")
+        risk_emoji     = {"low":"🟢","medium":"🟡","high":"🔴"}.get(risk, "⚪")
+        type_label     = "Issue" if draft_type == "issue" else "Pull Request"
+
+        # Turn the first few words of the instruction into a title slug
+        words = instruction.strip().rstrip(".").split()
+        title_slug = " ".join(words[:8]) + ("..." if len(words) > 8 else "")
+        title = f"{category_badge} [{category.upper()}] {title_slug}"
+
+        impl_checklist = "\n".join(f"- [ ] {note}" for note in impl_notes)
+
+        # Acceptance criteria: one per broad keyword found
+        criteria = []
+        lower = instruction.lower()
+        if any(w in lower for w in ["rate limit", "throttl"]):
+            criteria.append("Requests exceeding the limit receive HTTP 429 with a `Retry-After` header.")
+            criteria.append("Legitimate traffic at or below the limit is unaffected.")
+        if any(w in lower for w in ["login", "auth", "password", "token"]):
+            criteria.append("Authentication flow works end-to-end after the change.")
+            criteria.append("Invalid credentials are rejected with appropriate error codes.")
+        if any(w in lower for w in ["refactor", "duplicat", "pricing", "logic"]):
+            criteria.append("All existing tests pass without modification.")
+            criteria.append("No functional behaviour changes — only internal structure.")
+        if not criteria:
+            criteria = [
+                "The feature/fix described in the instruction is demonstrably working.",
+                "No existing functionality is broken.",
+            ]
+        criteria_list = "\n".join(f"- [ ] {c}" for c in criteria)
+
+        print(f"  → Type     : {type_label}")
+        print(f"  → Category : {category}")
+        print(f"  → Risk     : {risk}")
+
+        body = f"""\
+## Background
+This {type_label.lower()} was created from the following instruction:
+
+> {instruction}
+
+## Classification
+| Field | Value |
+|---|---|
+| **Type** | {type_label} |
+| **Category** | {category_badge} {category} |
+| **Risk Level** | {risk_emoji} {risk} |
+
+## Acceptance Criteria
+{criteria_list}
+
+## Implementation Notes
+{impl_checklist}
+
+## Test Plan
+- [ ] Write / update unit tests covering the new behaviour.
+- [ ] Run the full test suite and confirm no regressions.
+- [ ] Manually verify the feature end-to-end in a dev environment.
+{"- [ ] High-risk change: get a second reviewer before merging." if risk == "high" else ""}
+
+## Notes
+> This draft was generated by the GitHub Agent from a plain-language instruction.
+> No code changes have been committed yet.
+"""
+        return {"title": title, "body": body, "action": f"create_{draft_type}"}
