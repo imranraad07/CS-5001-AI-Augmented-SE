@@ -1,31 +1,33 @@
 # CS 5001 Streamlit Demo Suite
 
-All 15 online-course demos are available through one Streamlit application.
+Every online-course module is now an independently runnable Streamlit application.
 
-## Run
+## Run any module
+
+Install dependencies once:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
 pip install -r Online_Course/requirements.txt
-streamlit run Online_Course/streamlit_app.py
 ```
 
-Use the sidebar to move sequentially through Modules 1–15.
+Then run the module you are recording. For example:
 
-## Teaching design
+```bash
+streamlit run Online_Course/Module_01_Crash_Course_Demo/streamlit_app.py
+streamlit run Online_Course/Module_02_LLM_Basics/streamlit_app.py
+streamlit run Online_Course/Module_03_LLM_for_SE/streamlit_app.py
+```
 
-Each page is intentionally small enough for a live lecture recording. The UI exposes input, system behavior, evidence/output, and takeaway rather than hiding the mechanics.
+The same pattern continues through Module 15.
 
-Modules 2, 6, 7, 8, 13, and 14 explicitly label deterministic or simplified teaching simulations. In particular, MCP and A2A demonstrate course concepts but do not claim conformance with a current external protocol SDK.
+## Architecture
 
-The original Python implementations and tests remain in their module directories as inspectable source material and unit-test exercises. Streamlit is now the presentation/demo layer.
+Each `Module_XX_...` directory contains its own `streamlit_app.py`. This makes every 15-minute module self-contained for lecture recording and student demonstration.
 
-## Recording workflow
+The course-level `Online_Course/streamlit_app.py` remains as an optional all-modules navigator. The per-module applications are the primary recording interfaces.
 
-1. Start the Streamlit app once.
-2. Select the module from the sidebar.
-3. Reset widgets to defaults before recording.
-4. Narrate the concept while changing only the controls relevant to that module.
-5. End on visible verification/takeaway state.
-6. Move to the next module.
+Original Python logic and tests remain in each module so students can inspect and test the underlying implementation.
+
+## Accuracy convention
+
+Some modules intentionally use deterministic teaching simulations so demonstrations are reproducible and require no API key. Those pages identify this explicitly. The MCP and A2A modules demonstrate the concepts and structured interactions but do not claim conformance with a current external protocol SDK.
