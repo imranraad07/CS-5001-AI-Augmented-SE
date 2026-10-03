@@ -1,6 +1,8 @@
 """Real MCP server exposing bounded software-engineering tools."""
 from pathlib import Path
-import os
+import os, sys
+COURSE=Path(__file__).resolve().parents[1]
+if str(COURSE) not in sys.path: sys.path.insert(0,str(COURSE))
 from mcp.server.fastmcp import FastMCP
 from shared.repo_tools import RepoTools
 
