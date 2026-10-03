@@ -1,55 +1,28 @@
-"""Module 2 demo: next-token prediction and the effect of context.
-
-This is a teaching simulation, not an implementation of a real LLM.
-It uses small hand-written probability tables so the behavior is transparent.
-"""
-from __future__ import annotations
-
+"""Teaching simulation of next-token prediction. This is not a real LLM."""
 from dataclasses import dataclass
-
 
 @dataclass(frozen=True)
 class Prediction:
     token: str
     probability: float
 
-
 PREDICTIONS = {
-    "mary had a little": [
-        Prediction("lamb", 0.82),
-        Prediction("dog", 0.08),
-        Prediction("house", 0.05),
-        Prediction("idea", 0.05),
-    ],
-    "for i in range(": [
-        Prediction("10", 0.45),
-        Prediction("len(items)", 0.35),
-        Prediction("n", 0.15),
-        Prediction("1", 0.05),
-    ],
-    "items = ['a', 'b', 'c']\nfor i in range(": [
-        Prediction("len(items)", 0.78),
-        Prediction("3", 0.12),
-        Prediction("10", 0.06),
-        Prediction("n", 0.04),
-    ],
+    "mary had a little": [Prediction("lamb", .82), Prediction("dog", .08), Prediction("house", .05), Prediction("idea", .05)],
+    "for i in range(": [Prediction("10", .45), Prediction("len(items)", .35), Prediction("n", .15), Prediction("1", .05)],
+    "items = ['a', 'b', 'c']\nfor i in range(": [Prediction("len(items)", .78), Prediction("3", .12), Prediction("10", .06), Prediction("n", .04)],
 }
 
-
 def predict_next(context: str) -> list[Prediction]:
-    """Return the teaching distribution for an exact context."""
     key = context.strip().lower()
     if key not in PREDICTIONS:
-        raise KeyError(f"No teaching distribution for: {context!r}")
+        raise KeyError(f"No teaching distribution for {context!r}")
     return PREDICTIONS[key]
-
 
 def show(context: str) -> None:
     print(f"Context: {context!r}")
-    for prediction in predict_next(context):
-        print(f"  {prediction.token:<12} {prediction.probability:>6.0%}")
+    for p in predict_next(context):
+        print(f"  {p.token:<12} {p.probability:>6.0%}")
     print()
-
 
 if __name__ == "__main__":
     show("Mary had a little")
