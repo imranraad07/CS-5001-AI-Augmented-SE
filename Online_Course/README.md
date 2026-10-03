@@ -1,39 +1,44 @@
 # CS 5001 Online Course Demos
 
-Runnable demonstrations for the 15-minute online modules. The demos are intentionally small, inspectable, and suitable for live recording.
+The 15 online-course demonstrations now share one **Streamlit presentation layer** for consistent lecture recording, while the original module Python files remain available as inspectable implementation and testing exercises.
+
+## Run the complete demo suite
+
+From the repository root:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r Online_Course/requirements.txt
+streamlit run Online_Course/streamlit_app.py
+```
+
+Then use the Streamlit sidebar to move sequentially through Modules 1–15.
 
 ## Modules
 
-1. **AI-Augmented Software Engineering Crash Course** — end-to-end failing-test preview
+1. **AI-Augmented Software Engineering Crash Course** — failing test → prompt → context → tools → agent → protocols
 2. **How LLMs Work** — transparent next-token/context simulation
-3. **LLMs in Software Engineering** — debugging, repair, tests, documentation
+3. **LLMs in Software Engineering** — debugging and repair with verification
 4. **Prompt Engineering for Software Engineers** — weak vs structured prompts
 5. **Prompt Patterns and Problem Decomposition** — Persona, Flipped Interaction, Question Refinement, Cognitive Verifier, Reflection
-6. **RAG: Giving AI Project Knowledge** — retrieval and grounded prompt construction
-7. **Building a RAG Pipeline** — chunking, local vectors, cosine similarity, top-k retrieval
-8. **Building Your First CLI AI Agent** — Observe, Decide, Act, Evaluate loop
-9. **Tool Use and Reflection** — explicit tool registry, verification, critique, retry
+6. **RAG: Giving AI Project Knowledge** — retrieval and grounded response behavior
+7. **Building a RAG Pipeline** — chunking, overlap, and top-k retrieval
+8. **From LLM to AI Agent** — Observe, Decide, Act, Evaluate
+9. **Tool Use and Reflection** — verification, critique, retry
 10. **Planning and Multi-Agent Systems** — planner, coder, tester, reviewer
-11. **Building a Personalized AI Assistant** — allowlisted controller, workspace boundary, audit log
-12. **AI Agent Orchestration** — routing, verification, retry, finish/escalation
-13. **MCP: Connecting Agents to Tools** — dependency-free teaching model of schemas and structured tool calls
-14. **A2A and Agentic Protocols** — dependency-free teaching model of structured agent-to-agent messages
-15. **Engineering a Controlled AI-Augmented System** — validation, least capability, boundaries, limits, audit
+11. **Building a Personalized AI Assistant** — allowlisted controller and audit boundary
+12. **AI Agent Orchestration** — routing, verification, bounded retry
+13. **MCP: Connecting Agents to Tools** — tool schemas and structured calls
+14. **A2A and Agentic Protocols** — structured agent-to-agent messages
+15. **Security, Responsible Use, and the Complete System** — allowlists, limits, audit, verification, human oversight
 
-## Important teaching convention
+## Teaching convention
 
-Some demos deliberately model an LLM, MCP, or A2A behavior locally so the recording is deterministic and requires no API key. Those modules label the simulation explicitly. They should not be presented as conforming implementations of external protocols or as measurements from production models.
+The Streamlit app is a presentation and interaction layer. Some demos deliberately model LLM, RAG, agent, MCP, or A2A behavior locally so recordings are deterministic and require no API key. The UI labels these cases explicitly.
 
-## Running
+The MCP and A2A demonstrations are conceptual teaching simulations. They must not be presented as conforming implementations of a current external protocol SDK.
 
-Each module has its own README. Most executable demos use only the Python standard library; tests use pytest.
+The original module scripts and tests remain in their directories. They are useful for source inspection, exercises, and unit testing, while `streamlit_app.py` is the recommended interface for lecture/demo recording.
 
-Example:
-
-```bash
-cd Online_Course/Module_12_Orchestration
-python orchestration.py
-pytest -q
-```
-
-The modules progressively evolve the same software-engineering story from prompting and context through RAG, agents, orchestration, protocols, and controlled execution.
+See `STREAMLIT_README.md` for the recording workflow.
