@@ -1,0 +1,13 @@
+import streamlit as st
+st.set_page_config(page_title="Module 1 · Crash Course",layout="wide")
+st.title("Module 1 · AI-Augmented Software Engineering Crash Course")
+st.info("Follow one failing test from basic prompting to context, tools, an agent, verification, orchestration, and protocols.")
+subtotal=st.number_input("Subtotal",0.0,10000.0,80.0,step=5.0); discount=st.slider("Discount (%)",0,100,25); fixed=st.toggle("Apply agent's proposed fix")
+expected=round(subtotal*(1-discount/100),2); actual=round(subtotal*(1-discount/100) if fixed else subtotal-discount,2)
+a,b,c=st.columns(3); a.metric("Expected",f"USD {expected:.2f}"); b.metric("Implementation",f"USD {actual:.2f}"); c.metric("Test","PASS" if actual==expected else "FAIL")
+st.subheader("1 · Prompt"); st.code("Fix this code.")
+st.subheader("2 · Better prompt"); st.code("Analyze the failure first. Preserve the interface, do not modify tests, make the minimum change, then verify.")
+st.subheader("3 · Context / RAG"); st.code("test_percentage_discount: calculate_total(80, 25) == 60")
+st.subheader("4 · Controlled tools"); st.code("read_file · search_repo · edit_file · run_tests")
+st.subheader("5 · Agent + verification"); st.code("total = subtotal * (1 - discount_percent / 100)" if fixed else "total = subtotal - discount_percent",language="python")
+st.subheader("Course roadmap"); st.markdown("LLM → Prompt Engineering → RAG → Tools → Agent → Reflection → Planning → Multi-Agent → Orchestration → MCP → A2A → Controlled System")
