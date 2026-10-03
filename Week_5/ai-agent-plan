@@ -1,0 +1,9 @@
+Let's create a personalized AI agent.
+
+AI agent that can:
+- Review your repository code or recent changes
+- Draft and create a GitHub Issue or PR with human approval
+- Improve an existing GitHub Issue or PR (rewrite suggestion, not silent changes)
+
+We will use Planning, Tool Use, Reflection, Multi-agent patterns.
+
