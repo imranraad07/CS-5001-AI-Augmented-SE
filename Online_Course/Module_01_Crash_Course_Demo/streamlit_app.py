@@ -1,13 +1,23 @@
+from pathlib import Path
+import sys
+COURSE=Path(__file__).resolve().parents[1]
+if str(COURSE) not in sys.path: sys.path.insert(0,str(COURSE))
 import streamlit as st
-st.set_page_config(page_title="Module 1 · Crash Course",layout="wide")
-st.title("Module 1 · AI-Augmented Software Engineering Crash Course")
-st.info("Follow one failing test from basic prompting to context, tools, an agent, verification, orchestration, and protocols.")
-subtotal=st.number_input("Subtotal",0.0,10000.0,80.0,step=5.0); discount=st.slider("Discount (%)",0,100,25); fixed=st.toggle("Apply agent's proposed fix")
-expected=round(subtotal*(1-discount/100),2); actual=round(subtotal*(1-discount/100) if fixed else subtotal-discount,2)
-a,b,c=st.columns(3); a.metric("Expected",f"USD {expected:.2f}"); b.metric("Implementation",f"USD {actual:.2f}"); c.metric("Test","PASS" if actual==expected else "FAIL")
-st.subheader("1 · Prompt"); st.code("Fix this code.")
-st.subheader("2 · Better prompt"); st.code("Analyze the failure first. Preserve the interface, do not modify tests, make the minimum change, then verify.")
-st.subheader("3 · Context / RAG"); st.code("test_percentage_discount: calculate_total(80, 25) == 60")
-st.subheader("4 · Controlled tools"); st.code("read_file · search_repo · edit_file · run_tests")
-st.subheader("5 · Agent + verification"); st.code("total = subtotal * (1 - discount_percent / 100)" if fixed else "total = subtotal - discount_percent",language="python")
-st.subheader("Course roadmap"); st.markdown("LLM → Prompt Engineering → RAG → Tools → Agent → Reflection → Planning → Multi-Agent → Orchestration → MCP → A2A → Controlled System")
+from shared.streamlit_common import client_panel
+from shared.demo_project import create_workspace
+from shared.repo_tools import RepoTools
+from shared.agent import run_agent
+st.set_page_config(page_title="Module 1 · AI-Augmented SE",layout="wide"); st.title("Module 1 · AI-Augmented Software Engineering Crash Course")
+client=client_panel()
+if "ws1" not in st.session_state: st.session_state.ws1=str(create_workspace())
+tools=RepoTools(st.session_state.ws1)
+st.subheader("Real demo repository"); st.code(tools.read_file("src/checkout.py"),language="python")
+if st.button("Run real baseline pytest"): r=tools.run_tests(); st.code(r["output"])
+goal=st.text_area("Agent goal","Fix the failing percentage-discount behavior. Do not modify tests. Make the minimum implementation change and verify it.")
+if st.button("Run Ollama software-engineering agent"):
+    result=run_agent(client,tools,goal)
+    for e in result["events"]:
+        if e["type"]=="tool": st.write("TOOL",e["name"],e["arguments"]); st.json(e["result"] if isinstance(e["result"],dict) else {"result":e["result"]})
+        elif e.get("content"): st.write("AGENT",e["content"])
+    st.code(tools.read_file("src/checkout.py"),language="python"); final=tools.run_tests(); st.code(final["output"]); st.success("Verified by pytest" if final["returncode"]==0 else "Not verified")
+if st.button("Reset disposable repository"): st.session_state.ws1=str(create_workspace()); st.rerun()
