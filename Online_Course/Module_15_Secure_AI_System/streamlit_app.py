@@ -1,9 +1,20 @@
+from pathlib import Path
+import sys
+COURSE=Path(__file__).resolve().parents[1]
+if str(COURSE) not in sys.path: sys.path.insert(0,str(COURSE))
 import streamlit as st
-st.set_page_config(page_title="Module 15 · Secure System",layout="wide"); st.title("Module 15 · Security, Responsible Use, and the Complete System")
-cap=st.selectbox("Requested capability",["read_file","run_tests","arbitrary_shell","external_http"]); used=st.slider("Actions used",0,5,1); limit=3; allowed={"read_file","run_tests"}
-a,b=st.columns(2); a.metric("Budget",f"{used}/{limit}"); b.metric("Allowlisted","Yes" if cap in allowed else "No")
-if st.button("Authorize"):
-    if used>=limit: st.error("DENIED: action budget exhausted. Escalate.")
-    elif cap not in allowed: st.error("DENIED: capability not allowlisted.")
-    else: st.success("AUTHORIZED: validate → execute within boundary → audit → verify")
-st.code("User → Prompt/Plan → RAG → Agent/Orchestrator → Controlled Tools → Verification → Audit/Human Oversight")
+from shared.streamlit_common import client_panel
+from shared.demo_project import create_workspace
+from shared.repo_tools import RepoTools
+from shared.agent import run_agent
+st.set_page_config(page_title="Module 15 · Controlled AI System",layout="wide"); st.title("Module 15 · Engineering a Controlled AI-Augmented SE System")
+client=client_panel()
+if "ws15" not in st.session_state: st.session_state.ws15=str(create_workspace())
+tools=RepoTools(st.session_state.ws15); goal=st.text_area("Goal","Fix the checkout defect, preserve tests, use only repository tools, and verify the result."); limit=st.slider("Agent action/decision limit",2,12,8)
+if st.button("Execute controlled system"):
+    result=run_agent(client,tools,goal,limit)
+    st.subheader("Agent/tool trace"); [st.json(e) for e in result["events"]]
+    st.subheader("Audit log"); st.json(tools.audit)
+    verification=tools.run_tests(); st.subheader("Independent final verification"); st.code(verification["output"])
+    if verification["returncode"]==0: st.success("Verified")
+    else: st.error("Not verified; human review/escalation required")
