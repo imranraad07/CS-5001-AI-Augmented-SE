@@ -1,144 +1,72 @@
-# Module 1: AI-Augmented Software Engineering Crash-Course Demo
+# Module 1: AI-Augmented Software Engineering Crash Course
 
-This repository fragment is intentionally small and contains one deterministic bug. It is designed for a short screen-recorded opening demo.
+Target: 18 minutes including live generation, inspection, and learner pauses.
+Use `LECTURE_NOTES.md` for the teaching outline and `RECORDING_SCRIPT.md`
+for spoken narration and screen actions.
+
+## Learning outcomes
+
+Learners will identify a behavioral defect, supply task constraints and context,
+observe repository tool use, and evaluate a generated change using a diff and
+actual test results. Later modules explain the underlying concepts in depth.
 
 ## Scenario
 
-A checkout function should apply a percentage discount. Four tests pass and one fails because the implementation subtracts the percentage as a dollar amount.
+`calculate_total(80, 25)` should return `60.00`. The starting implementation
+subtracts 25 dollars and returns `55.00`. The initial suite has four passing
+tests and one failing percentage-discount test. These are expected results;
+always show the actual execution output during the lesson.
 
-## Setup
+## Setup before recording
 
-From this directory:
+From this module directory, use Python 3.10 or later:
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-pytest -q
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+ollama pull qwen3:4b
+python -m streamlit run streamlit_app.py
 ```
 
-Expected starting result:
-
-```text
-....F
-1 failed, 4 passed
-```
-
-The failing behavior is:
-
-```python
-calculate_total(80.00, 25)
-```
-
-Expected: `60.00`
-
-Buggy result: `55.00`
+On Windows, activate with `.venv\Scripts\activate`. Start Ollama separately
+if its local service is not already running. The app defaults to
+`http://localhost:11434`; change the sidebar settings if needed. Rehearse
+with the selected tool-capable model and hardware. Generation time and
+agent success vary; no successful model outcome is assumed.
 
 ## Recording sequence
 
-### 1. Baseline
+| Minutes | Screen action | Teaching purpose |
+| --- | --- | --- |
+| 0-2 | Show requirements, implementation, tests | Define the defect |
+| 2-4 | Run baseline pytest | Establish observable evidence |
+| 4-7 | Compare vague and structured requests | Introduce instructions and constraints |
+| 7-9 | Include test context | Explain relevant project context |
+| 9-13 | Run the agent and inspect live events | Demonstrate tools and an agent loop |
+| 13-16 | Review diff and independent verification | Evaluate changes and test integrity |
+| 16-18 | Recap and exit question | Connect to later modules |
 
-Run:
+For a 15-minute version, generate only the structured response and read the
+vague prompt without running it. For a 20-minute version, allow two extra
+minutes for inspecting a failure or discussing missing tests. Limit the live
+agent segment to four minutes in the lesson; edit out extended waiting in a
+recording, clearly marking any time cut. Do not present stored output as live.
 
-```bash
-pytest -q
-```
+## Interface behavior
 
-Establish the software-engineering goal: fix the failing test without modifying tests or public interfaces.
+The app creates a disposable workspace; agent edits do not modify this module's
+tracked `src/checkout.py`. Reset creates a fresh workspace and clears results.
+Baseline output, model proposal, events, and final results persist across
+ordinary interface interactions. Events appear as completed actions arrive,
+not as token-level streaming. Text-only proposals never apply changes.
 
-### 2. Simple LLM prompt
+The Module 1 write tool accepts only `src/checkout.py`. The app also compares
+the test file to its original snapshot. This tool restriction is not an OS
+sandbox: running generated Python executes code on the host. Use the local
+teaching environment with the disposable example, not an exposed public app.
 
-Show only `src/checkout.py` and ask:
-
-```text
-Fix this code.
-```
-
-Use this to discuss the weakness of vague prompts and missing repository context.
-
-### 3. Engineered prompt
-
-Use:
-
-```text
-A unit test is failing in this Python project.
-Analyze the failure before proposing a change.
-
-Constraints:
-- Preserve the existing public interface.
-- Do not modify the tests.
-- Do not introduce new dependencies.
-- Make the minimum necessary change.
-- Ask for information you need before proposing a fix.
-```
-
-Use the model's request for more information to motivate context and retrieval.
-
-### 4. Repository context
-
-Reveal `tests/test_checkout.py` and the requirements in this README. Explain that a large repository cannot simply be pasted into every prompt. This motivates retrieval and RAG.
-
-### 5. Tool use
-
-In an agent-capable coding environment, give the model repository access and the tools needed to read files and run tests. Ask:
-
-```text
-Investigate the failing test. Do not modify anything yet.
-```
-
-The model should inspect the failure and relevant implementation.
-
-### 6. Agent task
-
-Ask:
-
-```text
-Fix the failing test.
-
-Constraints:
-- Do not modify tests.
-- Preserve public interfaces.
-- Do not add dependencies.
-- Run the tests after making the change.
-```
-
-The intended correction is conceptually:
-
-```python
-total = subtotal * (1 - discount_percent / 100)
-```
-
-Run `pytest -q` again. Expected final result:
-
-```text
-.....
-5 passed
-```
-
-### 7. Connect the demo to the course
-
-Use the completed interaction to introduce the course progression:
-
-```text
-LLM
- -> Prompt Engineering
- -> Context / RAG
- -> Tool Use
- -> AI Agent
- -> Reflection and Planning
- -> Multi-Agent Systems
- -> Orchestration
- -> Agentic Protocols
-```
-
-Do not implement every later concept in this first demo. The working repository demonstrates the core transition from prompting to an agent using repository tools and verification. Planning, multi-agent orchestration, MCP, and A2A are previewed as the next abstractions.
-
-## Reset after recording
-
-Restore this line in `src/checkout.py`:
-
-```python
-total = subtotal - discount_percent
-```
-
-Then confirm that `pytest -q` returns one failure again.
+Successful pytest execution is labeled as test evidence, not proof of complete
+correctness. Review the diff for unchanged signature, validation, and rounding.
+Repository text search previews retrieval; this demo does not implement a RAG
+pipeline, multi-agent coordination, MCP, or A2A.
